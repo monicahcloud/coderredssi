@@ -7,7 +7,7 @@ function Logo() {
   return (
     <Link href="/" className="flex items-center shrink-0">
       <Image
-        src="/Code_Red_Approved_Logo_Designs.png"
+        src="/images/Code_Red_Approved_Logo_Designs.png"
         alt="Code Red Safe Schools Initiative"
         width={1840}
         height={860}
