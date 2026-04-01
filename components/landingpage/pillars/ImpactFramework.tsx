@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Check } from "lucide-react";
 import { SchoolCTA } from "@/components/cta/SchoolCTA";
 
 const pillars = [

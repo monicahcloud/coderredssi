@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { HeroMediaBackground } from "./HeroMediaBackground";
-import StatusCircle from "@/components/StatusCircle";
-import FrameworkBadges from "@/components/FrameworkBadges";
 
 const slides = [
   {
