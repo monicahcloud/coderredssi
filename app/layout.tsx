@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Montserrat, Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
-// import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/sonner";
 // import { TooltipProvider } from "@/components/ui/tooltip";
 // import QueryProvider from "@/providers/query-provider";
 
@@ -43,16 +43,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fontHeading.variable} ${fontBody.variable} ${fontMono.variable}`}>
-      <body className="min-h-screen  bg-(--cr-bg) text-(--cr-text) antialiased">
-        <QueryProvider>
-          <TooltipProvider>
-            {children}
+      <body className=" antialiased">
+        {/* <QueryProvider>
+          <TooltipProvider> */}
+        {children}
 
-            {/* Global UI */}
+        {/* Global UI */}
 
-            <Toaster />
-          </TooltipProvider>
-        </QueryProvider>
+        <Toaster />
+        {/* </TooltipProvider>
+        </QueryProvider> */}
       </body>
     </html>
   );
