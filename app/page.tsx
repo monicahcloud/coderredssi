@@ -12,8 +12,9 @@ import Stats from "@/components/Stats";
 export default function Home() {
   return (
     <div className="min-h-screen w-full text-white">
-      <NavBar />
       <Suspense>
+        <NavBar />
+
         <main className="w-full">
           <section className="relative">
             <div className="sticky top-0 h-screen">
@@ -65,8 +66,9 @@ immediate, coordinated action."
             </div>
           </section>
         </main>
+
+        <Footer />
       </Suspense>
-      <Footer />
     </div>
   );
 }

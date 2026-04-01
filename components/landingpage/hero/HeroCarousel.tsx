@@ -166,9 +166,9 @@ export default function HeroCarousel() {
                   <div className="grid w-full gap-10 lg:grid-cols-2 lg:items-center">
                     {/* LEFT COLUMN (TEXT) */}
                     <div className="max-w-2xl">
-                      <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                      <div className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                         {slide.title}
-                      </h1>
+                      </div>
 
                       <p className="mt-6 text-base leading-7 text-white/80 sm:text-2xl">
                         {slide.description}
