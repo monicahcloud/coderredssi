@@ -26,7 +26,7 @@ const slides = [
         </span>
         <br />
         <span className="italic text-primary-foreground">
-          To School Protection
+          To <span className="italic text-primary">School Protection</span>
         </span>
       </>
     ),
@@ -37,8 +37,8 @@ const slides = [
     mediaType: "video" as const,
     type: "school" as const,
     cta: {
-      label: "Request a School Assessment",
-      target: "schools",
+      label: "Our Framework",
+      target: "framework",
     },
   },
   {
@@ -55,26 +55,27 @@ const slides = [
       </>
     ),
     description:
-      "Code Red helps schools strengthen safety readiness while giving partners a clear path to fund, support, and scale measurable protection across real campuses.",
+      "Code Red standardizes assessments, training, and implementation support so each partnership and deployment can protect multiple campuses, not just one.",
     src: "/videos/heroVideo.mp4",
     poster: "/images/partner-poster.jpg",
     mediaType: "video" as const,
     type: "partner" as const,
     cta: {
-      label: "Become a Partner",
+      label: "Learn How to Help",
       target: "partners",
     },
   },
   {
     id: 3,
-    eyebrow: "Our Framework",
+    eyebrow: "WHY CURRENT SOLUTIONS FAIL",
     title: (
       <>
-        One Framework <br />
-        <span className="text-primary italic">Four Critical Pillars</span>
+        Why Current <br />
+        <span className="text-primary italic">Solutions Fail</span>
       </>
     ),
-    description: "...",
+    description:
+      "Most districts receive at most one formal safety assessment every 1-3 years, if any, and critical recommendations often go unfunded. Current security hardware, monitoring, and access-control upgrades are priced far beyond what under-resourced schools can sustain.",
     src: "/videos/heroVideo.mp4",
     poster: "/images/framework-poster.jpg",
     mediaType: "video" as const,
@@ -84,26 +85,26 @@ const slides = [
       target: "framework",
     },
   },
-  {
-    id: 4,
-    eyebrow: "Why Code Red",
-    title: (
-      <>
-        The CRISIS <br />
-        <span className="text-primary italic">Schools Under Threat </span>
-      </>
-    ),
-    description:
-      "School security threats have reached unprecedented levels, demanding immediate, coordinated action.",
-    src: "/videos/heroVideo.mp4",
-    poster: "/images/authority-poster.jpg",
-    mediaType: "video" as const,
-    type: "authority" as const,
-    cta: {
-      label: "Learn About Our Approach",
-      target: "about",
-    },
-  },
+  // {
+  //   id: 4,
+  //   eyebrow: "Why Code Red",
+  //   title: (
+  //     <>
+  //       The CRISIS <br />
+  //       <span className="text-primary italic">Schools Under Threat </span>
+  //     </>
+  //   ),
+  //   description:
+  //     "School security threats have reached unprecedented levels, demanding immediate, coordinated action.",
+  //   src: "/videos/heroVideo.mp4",
+  //   poster: "/images/authority-poster.jpg",
+  //   mediaType: "video" as const,
+  //   type: "authority" as const,
+  //   cta: {
+  //     label: "Learn More",
+  //     target: "crisis",
+  //   },
+  // },
 ];
 
 export default function HeroCarousel() {
@@ -162,15 +163,15 @@ export default function HeroCarousel() {
                   isActive={index === activeIndex}
                 />
 
-                <div className="relative z-10 mx-auto flex min-h-[88vh] w-full max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+                <div className="relative z-10 mx-auto flex min-h-[88vh] w-full max-w-8xl items-center px-4 sm:px-6 lg:px-20">
                   <div className="grid w-full gap-10 lg:grid-cols-2 lg:items-center">
                     {/* LEFT COLUMN (TEXT) */}
                     <div className="max-w-2xl">
-                      <div className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                      <div className="text-3xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                         {slide.title}
                       </div>
 
-                      <p className="mt-6 text-base leading-7 text-white/80 sm:text-2xl">
+                      <p className="  mt-6 text-base leading-7 text-white/80 sm:text-2xl">
                         {slide.description}
                       </p>
 

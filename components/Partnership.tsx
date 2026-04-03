@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Award, Crown, Medal, Shield } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PartnerCTA } from "./cta/PartnerCTA";
+import React from "react";
 
 const PARTNERSHIP_TIERS = [
   {
@@ -65,6 +66,18 @@ export default function FoundingAlliance() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  const tiersToRender = isMobile
+    ? [...PARTNERSHIP_TIERS].reverse()
+    : PARTNERSHIP_TIERS;
 
   const handlePartnerClick = () => {
     const currentType = searchParams.get("type");
@@ -94,16 +107,16 @@ export default function FoundingAlliance() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.25),transparent_30%)]" />
 
       <div className="relative mx-auto w-full max-w-[1800px]">
-        <div className="mb-16 flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-around">
-          <div className="flex flex-col items-center gap-6 text-left">
+        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className=" flex flex-col text-left gap-6">
             <h2 className="text-4xl font-bold uppercase tracking-tight italic sm:text-5xl md:text-6xl lg:text-7xl">
               YEARLY <span className="text-primary">IMPACT</span> BY <br />
-              <span className="text-primary">INVESTMENT TIER</span>
+              <span className="text-primary">INVESTMENT </span>TIER
             </h2>
           </div>
 
           <div className="max-w-md lg:mt-10">
-            <p className="border-l border-primary/20 pl-6 text-xl font-medium leading-relaxed text-white">
+            <p className="border-l border-white pl-6 text-xl font-medium leading-relaxed text-white">
               Funding translates directly into measurable school protection
               outcomes.
             </p>
@@ -111,17 +124,16 @@ export default function FoundingAlliance() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 xl:items-end">
-          {PARTNERSHIP_TIERS.map((tier, idx) => {
+          {tiersToRender.map((tier, idx) => {
             const Icon = tier.icon;
             const offsetClass =
-              idx === 0
+              tier.label === "Bronze"
                 ? "xl:mt-24"
-                : idx === 1
+                : tier.label === "Silver"
                   ? "xl:mt-16"
-                  : idx === 2
+                  : tier.label === "Gold"
                     ? "xl:mt-8"
                     : "xl:mt-0";
-
             return (
               <motion.button
                 key={tier.label}
@@ -133,7 +145,7 @@ export default function FoundingAlliance() {
                 transition={{ delay: idx * 0.08 }}
                 className={`group relative w-full text-left ${offsetClass}`}>
                 <div
-                  className={`relative h-full min-h-[360px] sm:min-h-[420px] transition-transform duration-700 [transform-style:preserve-3d]  ${tier.height}`}>
+                  className={`relative h-full min-h-[360px] sm:min-h-[420px] transition-transform duration-700 [transform-style:preserve-3d]  md:${tier.height}`}>
                   {/* FRONT */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.10),transparent_34%)]" />
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.35),transparent_45%)]" />

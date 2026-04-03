@@ -71,18 +71,21 @@ export default function AudienceSplitSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto mb-10 max-w-7xl ">
-          <div className=" ">
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight italic leading-[0.95]">
-                TWO PATHS <br />
-                <span className="text-primary">ONE MISSION</span>
-              </h2>
-
-              <p className="border-l border-primary/40 pl-6 text-lg sm:text-xl font-medium leading-relaxed text-white/75">
-                Whether you are leading a school or supporting one, Code Red SSI
-                helps turn concern into coordinated action.
-              </p>
+          className="mx-auto mb-10 max-w-8xl ">
+          <div className="relative mx-auto w-full max-w-[1800px]">
+            <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className=" flex flex-col text-left gap-6">
+                <h2 className="text-4xl font-bold uppercase tracking-tight italic sm:text-5xl md:text-6xl lg:text-7xl">
+                  TWO PATHS <br />
+                  <span className="text-primary">ONE MISSION</span>
+                </h2>
+              </div>
+              <div className="max-w-md lg:mt-10">
+                <p className="border-l border-white pl-6 text-xl font-medium leading-relaxed text-white">
+                  Whether you are leading a school or supporting one, Code Red
+                  SSI helps turn concern into coordinated action.
+                </p>
+              </div>
             </div>
 
             {/* subtle divider tying into cards */}
@@ -90,7 +93,7 @@ export default function AudienceSplitSection() {
           </div>
         </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-2 max-w-7xl mx-auto">
+        <div className="grid gap-6 lg:grid-cols-2 max-w-8xl mx-auto">
           {audienceCards.map((card, idx) => {
             const Icon = card.icon;
 

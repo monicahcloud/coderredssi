@@ -14,7 +14,8 @@ import { SchoolCTA } from "@/components/cta/SchoolCTA";
 const pillars = [
   {
     badge: "/images/assesmentpillar.png",
-    title: "Physical\nAssessments",
+    title: "Physical Assessments",
+    image: "/images/hallwaymonitors.png",
     description:
       "Our Physical Assessment establishes a clear, objective understanding of a school’s current security posture. We conduct on-site evaluations to identify vulnerabilities, assess readiness, and document physical risks across campus facilities. Findings are translated into actionable insights that inform immediate improvements and long-term security planning.",
     features: [
@@ -26,6 +27,7 @@ const pillars = [
   },
   {
     badge: "/images/educationpillar.png",
+    image: "/images/classroom.png",
     title: "Education",
     description:
       "Education ensures that safety plans are not just written, but understood and executed under pressure. Through structured, role-based training, we equip teachers, staff, and students with the knowledge and confidence to respond effectively during emergencies. Instruction emphasizes clarity, repetition, and practical application to reduce confusion and improve outcomes.",
@@ -38,6 +40,7 @@ const pillars = [
   },
   {
     badge: "/images/equipmentpillar.png",
+    image: "/images/hallwaymonitors.png",
     title: "Equipment",
     description:
       "Equipment translates assessment findings and training plans into real-world capability. We oversee the coordinated deployment of physical security technologies to ensure systems are properly selected, integrated, and functional. The focus is not just on installing equipment, but on ensuring it operates as a unified, reliable security ecosystem.",
@@ -50,6 +53,7 @@ const pillars = [
   },
   {
     badge: "/images/reassesspillar.png",
+    image: "/images/teammeeting.png",
     title: "Reassessment",
     description:
       "Reassessment ensures that security efforts remain effective over time. Through routine audits, post-incident reviews, and scheduled evaluations, we verify that systems, procedures, and training continue to function as intended. This ongoing process allows schools to adapt to changing environments, emerging threats, and operational lessons learned.",
@@ -66,13 +70,13 @@ export default function ImpactFramework() {
   return (
     <section
       id="framework"
-      className="relative overflow-hidden bg-white px-4 py-16 text-black sm:px-6 lg:px-8">
+      className="relative overflow-hidden bg-white px-4 py-10 text-black sm:px-6 lg:px-8">
       <div className="absolute inset-0 bg-[url('/images/concrete-texture.png')] bg-cover bg-center opacity-20" />
 
       <div className="relative mx-auto w-full max-w-[1800px]">
-        <div className="mb-16 flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-around">
-          <div className=" flex flex-col items-center text-left gap-6">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight italic">
+        <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className=" flex flex-col text-left gap-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl pl-6 font-bold uppercase tracking-tight italic">
               FOUR <span className="text-primary">PILLARS</span> OF <br />
               <span className="text-primary">IMPACT</span>
             </h2>
@@ -96,195 +100,186 @@ export default function ImpactFramework() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="group relative w-full min-h-[420px] sm:min-h-[480px] md:min-h-[520px] lg:min-h-[560px] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_22px_50px_rgba(120,0,0,0.28)]">
-                  <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                    {/* FRONT */}
-                    <div className="absolute inset-0 flex h-full flex-col bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] p-6 [backface-visibility:hidden]">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.12),transparent_35%)]" />
+                  className="group relative w-full min-h-[280px] sm:min-h-[340px] md:min-h-[520px] lg:min-h-[560px] transition-all duration-300 md:hover:-translate-y-2 md:hover:shadow-[0_22px_50px_rgba(120,0,0,0.28)]">
+                  <div className="relative h-full w-full md:[perspective:1200px]">
+                    <div className="relative h-full w-full transition-transform duration-700 md:[transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)]">
+                      {/* FRONT */}
+                      <div className="absolute inset-0 flex h-full flex-col bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] p-4 sm:p-5 md:p-6 md:[backface-visibility:hidden]">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.12),transparent_35%)]" />
 
-                      <div className="relative z-10 flex flex-1 items-center justify-center pt-2 pb-2">
-                        <Image
-                          src={pillar.badge}
-                          alt={pillar.title.replace("\n", " ")}
-                          width={480}
-                          height={480}
-                          className="h-auto w-[85%] sm:w-[90%] max-w-[300px] sm:max-w-[360px] md:max-w-[420px] object-contain drop-shadow-[0_28px_40px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-[1.06]"
-                        />
+                        <div className="relative z-10 flex flex-1 items-center justify-center pt-2 pb-2">
+                          <Image
+                            src={pillar.badge}
+                            alt={pillar.title.replace("\n", " ")}
+                            width={480}
+                            height={480}
+                            className="h-auto w-[62%] sm:w-[70%] md:w-[85%] max-w-[180px] sm:max-w-[240px] md:max-w-[420px] object-contain drop-shadow-[0_28px_40px_rgba(0,0,0,0.5)] transition-transform duration-300 md:group-hover:scale-[1.06]"
+                          />
+                        </div>
+
+                        <div className="relative z-10 pt-2 sm:pt-3 md:pt-4">
+                          <h3 className="whitespace-pre-line text-center text-2xl font-black italic leading-[0.95] tracking-tight text-white sm:text-3xl md:text-4xl">
+                            {pillar.title}
+                          </h3>
+                        </div>
+
+                        {/* Mobile helper text */}
+                        <div className="relative z-10 mt-4 text-center text-[10px] font-bold uppercase tracking-[0.16em] text-white/70 md:hidden">
+                          Tap to explore
+                        </div>
                       </div>
 
-                      <div className="relative z-10 pt-4">
-                        <h3 className="whitespace-pre-line text-center text-4xl font-black italic leading-[0.95] tracking-tight text-white sm:text-4xl">
-                          {pillar.title}
-                        </h3>
-                      </div>
-                    </div>
+                      {/* BACK - desktop only */}
+                      <div className="absolute inset-0 hidden h-full flex-col justify-between overflow-y-auto bg-gradient-to-b from-[#1a0000] via-[#2b0000] to-[#000000] p-5 text-white md:flex md:[transform:rotateY(180deg)] md:[backface-visibility:hidden] [-webkit-overflow-scrolling:touch]">
+                        <div className="min-h-full">
+                          <div>
+                            <h3 className="mb-4 text-2xl font-bold italic text-white">
+                              {pillar.title.replace("\n", " ")}
+                            </h3>
 
-                    {/* BACK */}
-                    <div className="absolute inset-0 flex h-full flex-col justify-between bg-gradient-to-b from-[#1a0000] via-[#2b0000] to-[#000000] p-6 text-white [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                      <div>
-                        <h3 className="mb-4 text-2xl font-bold italic text-white">
-                          {pillar.title.replace("\n", " ")}
-                        </h3>
+                            <p className="text-sm leading-relaxed text-white/80">
+                              {pillar.description}
+                            </p>
+                          </div>
 
-                        <p className="text-sm leading-relaxed text-white/80">
-                          {pillar.description}
-                        </p>
-                      </div>
-
-                      <div className="mt-6 text-xs uppercase tracking-[0.15em] text-red-400">
-                        Click to explore →
+                          <div className="mt-6 text-xs uppercase tracking-[0.15em] text-red-400">
+                            Click to explore →
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* GLOW SWEEP */}
-                  <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  {/* GLOW SWEEP - desktop only */}
+                  <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
                     <div className="absolute -left-[35%] top-0 h-full w-[30%] -skew-x-12 bg-gradient-to-r from-transparent via-white/18 to-transparent opacity-0 transition-all duration-700 ease-out group-hover:left-[115%] group-hover:opacity-100" />
                   </div>
                 </motion.button>
               </DialogTrigger>
 
-              <DialogContent className="max-h-[85vh] overflow-y-auto border border-slate-300 bg-white p-0 sm:max-w-3xl">
-                <div className="border-b border-slate-200 bg-slate-50 px-6 py-5 md:px-8">
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={pillar.badge}
-                      alt={pillar.title.replace("\n", " ")}
-                      width={100}
-                      height={100}
-                      className="h-14 w-14 object-contain"
-                    />
+              <DialogContent className="max-h-[90vh] overflow-y-auto border-0 bg-transparent p-0 shadow-none sm:max-w-4xl">
+                <div className="overflow-hidden border border-black/40 bg-[#f3efe9] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+                  {/* TOP HERO PANEL */}
+                  <div className="relative overflow-hidden bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] px-5 py-6 md:px-10 md:py-10">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.14),transparent_34%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.18))]" />
 
-                    <DialogHeader className="space-y-0 text-left">
-                      <DialogTitle className="whitespace-pre-line text-2xl font-black italic leading-tight text-slate-900 md:text-3xl">
-                        {pillar.title}
-                      </DialogTitle>
-                    </DialogHeader>
-                  </div>
-                </div>
-
-                <DialogContent className="max-h-[90vh] overflow-y-auto border-0 bg-transparent p-0 shadow-none sm:max-w-4xl">
-                  <div className="overflow-hidden border border-black/40 bg-[#f3efe9] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
-                    {/* TOP HERO PANEL */}
-                    <div className="relative overflow-hidden bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] px-6 py-8 md:px-10 md:py-10">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.14),transparent_34%)]" />
-                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.18))]" />
-
-                      <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="flex h-20 w-20 shrink-0 items-center justify-center border border-white/15backdrop-blur-sm">
-                            <Image
-                              src={pillar.badge}
-                              alt={pillar.title.replace("\n", " ")}
-                              width={72}
-                              height={72}
-                              className="h-14 w-14 object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)]"
-                            />
-                          </div>
-
-                          <DialogHeader className="space-y-2 text-left">
-                            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/70">
-                              Pillar Overview
-                            </p>
-
-                            <DialogTitle className="whitespace-pre-line text-3xl font-black uppercase italic leading-[0.95] tracking-tight text-white md:text-5xl">
-                              {pillar.title}
-                            </DialogTitle>
-                          </DialogHeader>
+                    <div className="relative z-10 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center border border-white/15 md:h-20 md:w-20">
+                          <Image
+                            src={pillar.badge}
+                            alt={pillar.title.replace("\n", " ")}
+                            width={72}
+                            height={72}
+                            className="h-12 w-12 object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.35)] md:h-14 md:w-14"
+                          />
                         </div>
 
-                        <div className="hidden md:block max-w-xs border-l border-white/15 pl-6">
-                          <p className="text-sm leading-relaxed text-white/75">
-                            One coordinated pillar within the Code Red framework
-                            for safer, stronger, more resilient schools.
+                        <DialogHeader className="space-y-2 text-left">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/70">
+                            Pillar Overview
                           </p>
+
+                          <DialogTitle className="whitespace-pre-line text-2xl font-black uppercase italic leading-[0.95] tracking-tight text-white sm:text-3xl md:text-5xl">
+                            {pillar.title}
+                          </DialogTitle>
+                        </DialogHeader>
+                      </div>
+
+                      <div className="hidden max-w-xs border-l border-white/15 pl-6 md:block">
+                        <p className="text-sm leading-relaxed text-white/75">
+                          One coordinated pillar within the Code Red framework
+                          for safer, stronger, more resilient schools.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* BODY */}
+                  <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+                    {/* LEFT COLUMN */}
+                    <div className="px-5 py-5 md:border-r md:border-black/10 md:px-10 md:py-8">
+                      <div className="mb-6">
+                        <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
+                          Description
+                        </p>
+
+                        <div className="border border-black/10 bg-white px-4 py-4 md:px-5 md:py-5 shadow-[0_8px_24px_rgba(0,0,0,0.05)]">
+                          <p className="text-sm leading-7 text-slate-800 md:text-base">
+                            {pillar.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
+                          Key Focus Areas
+                        </p>
+
+                        <div className="relative pl-8">
+                          <div className="absolute left-[11px] top-1 bottom-1 w-px bg-slate-300" />
+
+                          <div className="space-y-5">
+                            {pillar.features.map((feature) => (
+                              <div
+                                key={feature}
+                                className="relative flex items-start gap-4">
+                                <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
+                                  ✓
+                                </span>
+
+                                <p className="text-sm leading-relaxed text-slate-800 md:text-[15px]">
+                                  {feature}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* BODY */}
-                    <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
-                      {/* LEFT COLUMN */}
-                      <div className="border-r border-black/10 px-6 py-6 md:px-10 md:py-8">
-                        <div className="mb-6">
-                          <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-                            Description
-                          </p>
+                    {/* RIGHT COLUMN */}
+                    <div className="bg-[#ece6df] px-5 py-5 md:px-8 md:py-8">
+                      <div className="border border-primary/15 bg-primary/5 px-4 py-4 md:px-5 md:py-5">
+                        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
+                          Strategic Impact
+                        </p>
 
-                          <div className="border border-black/10 bg-white px-5 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.05)]">
-                            <p className="text-[15px] leading-7 text-slate-800 md:text-base">
-                              {pillar.description}
-                            </p>
-                          </div>
-                        </div>
-
-                        <div>
-                          <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-                            Key Focus Areas
-                          </p>
-
-                          <div className="relative pl-8">
-                            <div className="absolute left-[11px] top-1 bottom-1 w-px bg-slate-300" />
-
-                            <div className="space-y-5">
-                              {pillar.features.map((feature) => (
-                                <div
-                                  key={feature}
-                                  className="relative flex items-start gap-4">
-                                  <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
-                                    ✓
-                                  </span>
-
-                                  <p className="text-sm leading-relaxed text-slate-800 md:text-[15px]">
-                                    {feature}
-                                  </p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
+                        <p className="text-sm leading-7 text-slate-900 md:text-[15px]">
+                          This pillar strengthens operational readiness by
+                          turning safety priorities into structured, repeatable
+                          action across the school environment.
+                        </p>
                       </div>
 
-                      {/* RIGHT COLUMN */}
-                      <div className="bg-[#ece6df] px-6 py-6 md:px-8 md:py-8">
-                        <div className="border border-primary/15 bg-primary/5 px-5 py-5">
-                          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-                            Strategic Impact
-                          </p>
+                      <div className="mt-6 border border-black/10 bg-white px-4 py-4 md:px-5 md:py-5">
+                        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
+                          Why It Matters
+                        </p>
 
-                          <p className="text-sm leading-7 text-slate-900 md:text-[15px]">
-                            This pillar strengthens operational readiness by
-                            turning safety priorities into structured,
-                            repeatable action across the school environment.
-                          </p>
-                        </div>
+                        <p className="text-sm leading-7 text-slate-700 md:text-[15px]">
+                          Schools need more than isolated fixes. Each pillar
+                          supports a wider readiness system that improves
+                          visibility, coordination, and long-term resilience.
+                        </p>
+                      </div>
 
-                        <div className="mt-6 border border-black/10 bg-white px-5 py-5">
-                          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-                            Why It Matters
-                          </p>
-
-                          <p className="text-sm leading-7 text-slate-700 md:text-[15px]">
-                            Schools need more than isolated fixes. Each pillar
-                            supports a wider readiness system that improves
-                            visibility, coordination, and long-term resilience.
-                          </p>
-                        </div>
-
+                      {pillar.image && (
                         <div className="mt-6 overflow-hidden border border-black/10 bg-black">
-                          <div className="relative h-[220px] w-full">
+                          <div className="relative h-[180px] w-full sm:h-[220px]">
                             <Image
-                              src={pillar.badge}
+                              src={pillar.image}
                               alt={pillar.title.replace("\n", " ")}
                               fill
-                              className="object-contain p-8 opacity-95"
+                              className="object-contain p-6 sm:p-8 opacity-95"
                             />
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
-                </DialogContent>
+                </div>
               </DialogContent>
             </Dialog>
           ))}

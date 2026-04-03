@@ -9,20 +9,24 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import StatusCircle from "./StatusCircle";
+import { PartnerCTA } from "./cta/PartnerCTA";
 
 const stats = [
   {
-    label: "Threats Reported by Schools ",
-    value: "43%",
+    label: "Preparedness Gap",
+    value: "75%",
+    subtext: "of staff feel under-equipped",
     description:
-      "Principals reporting at least one threat to their school in a recent academic year. Source: RAND American Educator Panels (2025).",
+      "A majority of educators report lack of tactical readiness for high-stress incidents.",
     icon: School,
   },
   {
-    label: "Bullying & Cyberbullying",
-    value: "49%",
+    label: "Limited Assessments",
+    value: "3+ Yrs",
+    subtext:
+      "Most schools see at most 1 professional safety assessment a year.",
     description:
-      "School leaders identifying bullying as a top safety concern. Source: RAND School Safety Survey.",
+      "Code Red adds complementary assessments and training so districts get continuous improvement, not one-off assessments and training.",
     icon: ShieldCheck,
   },
   {
@@ -33,21 +37,23 @@ const stats = [
     icon: Users,
   },
   {
-    label: "Crime on School Property",
-    value: "1M+",
+    label: "Unfunded upgrades",
+    value: "250,000+",
     description:
-      "Criminal incidents reported at school locations (2020–2024). Source: FBI NIBRS.",
+      "Critical security equipment is routinely delayed or cut due to cost.",
     icon: Landmark,
   },
 ];
 
 export default function StatsPage() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#060606] px-4 py-16 text-white sm:px-6 lg:px-8">
+    <section
+      id="crisis"
+      className="relative min-h-screen overflow-hidden bg-[#060606] px-4 py-16 text-white sm:px-6 lg:px-8">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.16),transparent_28%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.02),transparent)]" />
 
-      <div className="relative mx-auto w-full max-w-7xl">
+      <div className="relative mx-auto w-full max-w-8xl">
         <motion.div
           initial={{ opacity: 0, y: 26 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +62,7 @@ export default function StatsPage() {
           className="mb-14 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-4xl">
             <h1 className="mt-3 text-4xl font-black uppercase italic tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              The Numbers Behind Our{" "}
+              The <span className="text-primary">Numbers</span> Behind Our{" "}
               <span className="text-primary">Mission</span>
             </h1>
           </div>
@@ -88,18 +94,18 @@ export default function StatsPage() {
                   <div className="mb-8 flex h-12 w-12 items-center justify-center border border-white/10 bg-black/20">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
-
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">
                     {stat.label}
                   </p>
-
                   <div className="mt-4 flex items-end gap-3">
                     <p className="text-5xl font-black leading-none text-white">
                       {stat.value}
                     </p>
                     <ArrowUpRight className="mb-1 h-5 w-5 text-primary" />
-                  </div>
-
+                  </div>{" "}
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">
+                    {stat.subtext}
+                  </p>
                   <p className="mt-5 text-sm leading-7 text-white/70">
                     {stat.description}
                   </p>
@@ -120,7 +126,8 @@ export default function StatsPage() {
             </p>
 
             <h2 className="mt-3 text-3xl font-black uppercase italic tracking-tight sm:text-4xl">
-              The Cost of Doing <span className="text-red-500">Nothing</span>
+              The <span className="text-red-500">Cost</span> of Doing{" "}
+              <span className="text-red-500">Nothing</span>
             </h2>
 
             <p className="mt-6 text-base leading-8 text-white/80">
@@ -183,6 +190,9 @@ export default function StatsPage() {
             scale, and strengthen measurable school protection outcomes.
           </p>
         </motion.div>
+      </div>
+      <div className="mt-10 flex justify-center">
+        <PartnerCTA className=" max-w-md" />
       </div>
     </section>
   );
