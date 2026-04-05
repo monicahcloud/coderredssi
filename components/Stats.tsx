@@ -32,6 +32,7 @@ const stats = [
   {
     label: "Student Fights as a Recurring Issue",
     value: "13%",
+    subtext: "Schools reporting physical fights as a recurring safety issue.",
     description:
       "Schools reporting physical fights as a recurring safety issue. Source: RAND.",
     icon: Users,
@@ -39,6 +40,8 @@ const stats = [
   {
     label: "Unfunded upgrades",
     value: "250,000+",
+    subtext:
+      "Critical security equipment is routinely delayed or cut due to cost.",
     description:
       "Critical security equipment is routinely delayed or cut due to cost.",
     icon: Landmark,
@@ -91,12 +94,15 @@ export default function StatsPage() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.12),transparent_30%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <div className="relative z-10">
-                  <div className="mb-8 flex h-12 w-12 items-center justify-center border border-white/10 bg-black/20">
-                    <Icon className="h-6 w-6 text-primary" />
+                  <div className="mb-6 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center border border-white/10 bg-black/20">
+                      <Icon className="h-5 w-5 text-primary" />
+                    </div>
+
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/55">
+                      {stat.label}
+                    </p>
                   </div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">
-                    {stat.label}
-                  </p>
                   <div className="mt-4 flex items-end gap-3">
                     <p className="text-5xl font-black leading-none text-white">
                       {stat.value}
@@ -106,9 +112,9 @@ export default function StatsPage() {
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-white/55">
                     {stat.subtext}
                   </p>
-                  <p className="mt-5 text-sm leading-7 text-white/70">
+                  {/* <p className="mt-5 text-sm leading-7 text-white/70">
                     {stat.description}
-                  </p>
+                  </p> */}
                 </div>
               </motion.div>
             );
@@ -121,7 +127,7 @@ export default function StatsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="border border-red-500/20 bg-gradient-to-br from-[#2b0000] via-[#5a0000] to-[#120000] p-8">
-            <p className="text-[11px] font-black uppercase tracking-[0.24em] text-red-200/70">
+            <p className="text-[20px] font-black uppercase tracking-[0.24em] text-red-200/70">
               The Cost
             </p>
 
@@ -136,37 +142,82 @@ export default function StatsPage() {
               coordinated safety systems does not reduce risk — it amplifies it.
             </p>
 
-            <div className="mt-8 grid gap-6 sm:grid-cols-3">
-              <div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-3 sm:items-stretch">
+              <div className="flex h-full flex-col">
                 <p className="text-lg font-bold text-white">Human Impact</p>
-                <ul className="mt-3 space-y-2 text-sm text-white/75">
-                  <li>• Trauma that lasts generations</li>
-                  <li>• Long-term psychological harm</li>
-                  <li>• Lifelong medical & counseling needs</li>
-                  <li>• ~$3.5B annual cost of school crime</li>
+
+                <ul className="mt-3 flex flex-1 flex-col text-sm text-white/75">
+                  <li className="mb-2">
+                    • Lives at risk and trauma that lasts generations.
+                  </li>
+                  <li className="mb-2">• Long-term psychological harm</li>
+                  <li className="mb-2">
+                    • Lifelong medical and counseling needs
+                  </li>
+                  <li className="mb-2">
+                    • Annual costs of school crime at about{" "}
+                    <span className="text-red-500">$3.5B</span> dollars
+                  </li>
+
+                  <li className="mt-auto flex min-h-[140px]  border-t border-red-500/30 pt-3 text-base font-bold text-white text-center">
+                    <span>
+                      Non-fatal gunshot injuries on school campuses cost the
+                      average victim
+                      <span className="text-red-500"> about $100,000</span>
+                    </span>
+                  </li>
                 </ul>
               </div>
 
-              <div>
+              <div className="flex h-full flex-col">
                 <p className="text-lg font-bold text-white">
-                  Financial & Institutional
+                  Financial &amp; Institutional
                 </p>
-                <ul className="mt-3 space-y-2 text-sm text-white/75">
-                  <li>• Rising insurance & legal liability</li>
-                  <li>• $430M+ in property damage</li>
-                  <li>• $600M+ annual cost of school-based crime</li>
+
+                <ul className="mt-3 flex flex-1 flex-col text-sm text-white/75">
+                  <li className="mb-2">
+                    • Legal liability, settlements, and rising insurance
+                    premiums
+                  </li>
+                  <li className="mb-2">
+                    • Over <span className="text-red-500">$430M+</span> from
+                    property loss and damage in U.S. schools
+                  </li>
+                  <li className="mb-2">
+                    • <span className="text-red-500">$600M+</span> annual cost
+                    from school-based crime across healthcare, mental health
+                    services, lost productivity, and property damage
+                  </li>
+
+                  <li className="mt-auto flex min-h-[140px] border-t border-red-500/30 pt-3 text-base font-bold text-white text-center">
+                    <span>
+                      Nearly <span className="text-red-500">$60 million</span> a
+                      year from serious on-campus assaults and gunshot injuries
+                    </span>
+                  </li>
                 </ul>
               </div>
 
-              <div>
+              <div className="flex h-full flex-col">
                 <p className="text-lg font-bold text-white">
                   Educational Impact
                 </p>
-                <ul className="mt-3 space-y-2 text-sm text-white/75">
-                  <li>• Loss of instructional time</li>
-                  <li>• School closures</li>
-                  <li>• Disrupted academic continuity</li>
-                  <li>• Reduced lifetime earnings (~$11T impact)</li>
+
+                <ul className="mt-3 flex flex-1 flex-col text-sm text-white/75">
+                  <li className="mb-2">• Loss of instructional time</li>
+                  <li className="mb-2">• School closures</li>
+                  <li className="mb-2">• Disrupted academic continuity</li>
+                  <li className="mb-2">
+                    • Reduced graduation and lifetime earnings
+                  </li>
+
+                  <li className="mt-auto flex min-h-[140px] border-t border-red-500/30 pt-3 text-base font-bold text-white text-center">
+                    <span>
+                      Estimates about{" "}
+                      <span className="text-red-500">$11 trillion</span> in lost
+                      lifetime earnings
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>

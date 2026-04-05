@@ -37,8 +37,8 @@ const slides = [
     mediaType: "video" as const,
     type: "school" as const,
     cta: {
-      label: "Our Framework",
-      target: "framework",
+      label: "Learn Our Approach",
+      target: "audiences",
     },
   },
   {
@@ -62,7 +62,7 @@ const slides = [
     type: "partner" as const,
     cta: {
       label: "Learn How to Help",
-      target: "partners",
+      target: "partnership",
     },
   },
   {
@@ -82,7 +82,7 @@ const slides = [
     type: "framework" as const,
     cta: {
       label: "Explore the Framework",
-      target: "framework",
+      target: "crisis",
     },
   },
   // {

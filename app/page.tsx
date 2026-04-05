@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import HeroCarousel from "@/components/landingpage/hero/HeroCarousel";
 import Footer from "@/components/footer/Footer";
 import NavBar from "@/components/navbar/NavBar";
 import AudienceSplitSection from "@/components/landingpage/AudienceSplitSection";
@@ -8,6 +7,7 @@ import ContactSection from "@/components/contact/ContactSection";
 import Partnership from "@/components/Partnership";
 import TransitionSlide from "@/components/TransitionSlide";
 import Stats from "@/components/Stats";
+import { StickyHero } from "@/components/landingpage/hero/StickyHero";
 
 export default function Home() {
   return (
@@ -18,9 +18,16 @@ export default function Home() {
         <main className="w-full">
           <section className="relative">
             <div className="sticky top-0 h-screen">
-              <HeroCarousel />
+              <StickyHero />
             </div>
-
+            <TransitionSlide
+              eyebrow="who we serve"
+              title="Built for Schools,  Structured for Partners."
+              highlight="Threat"
+              description="Code Red SSI helps schools strengthen safety readiness while giving partners a clear, accountable way to support measurable impact."
+              tone="neutral"
+            />
+            <AudienceSplitSection />
             <div className="relative z-20 bg-black">
               <TransitionSlide
                 eyebrow="Code Red Framework"
@@ -50,18 +57,10 @@ export default function Home() {
                 highlight="Threat"
                 description="School security threats have reached unprecedented levels, demanding
 immediate, coordinated action."
-                tone="dark"
-              />
-              <Stats />
-              <TransitionSlide
-                eyebrow="who we serve"
-                title="Built for Schools,  Structured for Partners.
-"
-                highlight="Threat"
-                description="Code Red SSI helps schools strengthen safety readiness while giving partners a clear, accountable way to support measurable impact."
                 tone="neutral"
               />
-              <AudienceSplitSection />
+              <Stats />
+
               <ContactSection />
             </div>
           </section>
