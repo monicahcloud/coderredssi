@@ -144,7 +144,7 @@ export default function ReviewSubmitStep({
         />
       </ReviewCard>
 
-      <ReviewCard
+      {/* <ReviewCard
         title="Partnership Interest"
         step={3}
         onEditSection={onEditSection}>
@@ -161,8 +161,8 @@ export default function ReviewSubmitStep({
           label="Existing Relationship"
           value={values.interest.existingRelationship}
         />
-      </ReviewCard>
-
+      </ReviewCard> */}
+      {/* 
       <ReviewCard
         title="Alignment & Intent"
         step={4}
@@ -188,7 +188,7 @@ export default function ReviewSubmitStep({
         <Row label="Decision Timeline" value={values.decision.timeline} />
         <Row label="Budget Approved" value={values.decision.budgetApproved} />
         <Row label="Best Next Step" value={values.decision.nextStep} />
-      </ReviewCard>
+      </ReviewCard> */}
 
       <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5 md:p-6">
         <div className="mb-4">

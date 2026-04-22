@@ -6,31 +6,25 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo, useState } from "react";
 
 import {
-  schoolSafetyIntakeSchema,
-  type SchoolSafetyIntakeInput,
+  schoolSafetyIntakeLiteSchema,
+  type SchoolSafetyIntakeLiteInput,
+  type SchoolSafetyIntakeLiteValues,
   type SchoolSafetyIntakeValues,
 } from "@/lib/intake/schemas";
-
 import {
   saveIntakeDraft,
   loadIntakeDraft,
   clearIntakeDraft,
 } from "@/lib/intake/storage";
-
 import IntakeProgress from "./IntakeProgress";
 import IntakeNavigation from "./IntakeNavigation";
 import SchoolContactStep from "./steps/SchoolContactStep";
-import SafetyStatusStep from "./steps/SafetyStatusStep";
-import SystemsResourcesStep from "./steps/SystemsResourcesStep";
-import PhysicalSecurityStep from "./steps/PhysicalSecurityStep";
-import CapacityBarriersStep from "./steps/CapacityBarriersStep";
-import ServicesNextStepsStep from "./steps/ServicesNextStepsStep";
 import ReviewSubmitStep from "./steps/ReviewSubmitStep";
 import IntroConsentStep from "./steps/IntroConsentStep";
-import IncidentsConcernsStep from "./steps/IncidentsConcernsStep";
 import { defaultIntakeValues } from "@/lib/intake/defaultValues";
+import { sendSchoolSafetyIntakeEmail } from "@/lib/email/emailjs";
 
-const TOTAL_STEPS = 3; // Update this as you add/remove steps
+const TOTAL_STEPS = 3;
 
 export default function SchoolSafetyIntake() {
   const [step, setStep] = useState(1);
@@ -38,27 +32,54 @@ export default function SchoolSafetyIntake() {
     type: "success" | "error";
     message: string;
   } | null>(null);
+  const [isDraftLoaded, setIsDraftLoaded] = useState(false);
 
   const methods = useForm<
-    SchoolSafetyIntakeInput,
-    any,
-    SchoolSafetyIntakeValues
+    SchoolSafetyIntakeLiteInput,
+    unknown,
+    SchoolSafetyIntakeLiteValues
   >({
-    resolver: zodResolver(schoolSafetyIntakeSchema),
-    defaultValues: (loadIntakeDraft() ??
-      defaultIntakeValues) as SchoolSafetyIntakeInput,
+    resolver: zodResolver(schoolSafetyIntakeLiteSchema),
+    defaultValues: {
+      consent: defaultIntakeValues.consent,
+      schoolContact: defaultIntakeValues.schoolContact,
+      finalConfirmation: defaultIntakeValues.finalConfirmation,
+    },
     mode: "onBlur",
   });
 
-  const { watch, trigger, handleSubmit, reset, formState } = methods;
+  const { watch, trigger, reset, formState } = methods;
 
   useEffect(() => {
+    const savedDraft = loadIntakeDraft();
+
+    if (savedDraft) {
+      reset({
+        consent: savedDraft.consent ?? defaultIntakeValues.consent,
+        schoolContact:
+          savedDraft.schoolContact ?? defaultIntakeValues.schoolContact,
+        finalConfirmation:
+          savedDraft.finalConfirmation ?? defaultIntakeValues.finalConfirmation,
+      });
+    }
+
+    setIsDraftLoaded(true);
+  }, [reset]);
+
+  useEffect(() => {
+    if (!isDraftLoaded) return;
+
     const subscription = watch((values) => {
-      saveIntakeDraft(values as SchoolSafetyIntakeValues);
+      saveIntakeDraft({
+        ...defaultIntakeValues,
+        consent: values.consent,
+        schoolContact: values.schoolContact,
+        finalConfirmation: values.finalConfirmation,
+      } as SchoolSafetyIntakeValues);
     });
 
     return () => subscription.unsubscribe();
-  }, [watch]);
+  }, [watch, isDraftLoaded]);
 
   const fieldsByStep = useMemo<Record<number, string[]>>(
     () => ({
@@ -78,47 +99,7 @@ export default function SchoolSafetyIntake() {
         "schoolContact.email",
         "schoolContact.phone",
       ],
-      3: [
-        "safetyStatus.campusSafety",
-        "safetyStatus.emergencyConfidence",
-        "safetyStatus.policyConsistency",
-        "safetyStatus.emergencyPlanning",
-        "safetyStatus.accessControl",
-        "safetyStatus.threatAssessmentProtocols",
-      ],
-      // 4: [
-      //   "incidents.incidentTypes",
-      //   "incidents.incidentOther",
-      //   "incidents.incidentFrequency",
-      //   "incidents.topConcerns",
-      // ],
-      // 5: [
-      //   "systemsResources.emergencyPlanStatus",
-      //   "systemsResources.threatAssessmentTeam",
-      //   "systemsResources.drillFrequency",
-      //   "systemsResources.mentalHealthSupport",
-      //   "systemsResources.firstResponderRelationship",
-      //   "systemsResources.staffTrainingLevel",
-      // ],
-      // 6: [
-      //   "systemsResources.physicalSecurity.entryProcedure",
-      //   "systemsResources.physicalSecurity.securityFeatures",
-      //   "systemsResources.physicalSecurity.hasVulnerabilities",
-      //   "systemsResources.physicalSecurity.vulnerabilitiesDescription",
-      // ],
-      // 7: [
-      //   "capacityBarriers.implementationCapacity",
-      //   "capacityBarriers.barriers",
-      //   "capacityBarriers.barriersOther",
-      //   "capacityBarriers.urgency",
-      // ],
-      // 8: [
-      //   "services.supportTypes",
-      //   "services.supportTypesOther",
-      //   "services.preferredTimeframe",
-      //   "services.additionalInformation",
-      // ],
-      9: ["finalConfirmation.agreeToSubmit"],
+      3: ["finalConfirmation.agreeToSubmit"],
     }),
     [],
   );
@@ -143,54 +124,49 @@ export default function SchoolSafetyIntake() {
     setStep((prev) => Math.max(prev - 1, 1));
   };
 
-  const onSubmit = async (values: SchoolSafetyIntakeValues) => {
-    setSubmitStatus(null);
+  if (!isDraftLoaded) return null;
 
-    try {
-      const res = await fetch("/api/intake/school-safety", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok || !result.success) {
-        throw new Error(result.message || "Submission failed.");
-      }
-
-      clearIntakeDraft();
-      reset(defaultIntakeValues as SchoolSafetyIntakeInput);
-      setStep(1);
-
-      setSubmitStatus({
-        type: "success",
-        message: `Intake submitted successfully. Intake ID: ${result.intakeId}`,
-      });
-    } catch (error) {
-      console.error(error);
-      setSubmitStatus({
-        type: "error",
-        message: "We couldn't submit the intake. Please try again.",
-      });
-    }
-  };
-
-  if (submitStatus?.type === "success") {
-    return (
-      <div className="flex min-h-100 items-center justify-center px-6">
-        <div className="max-w-md rounded-2xl border border-white/10 bg-white/3 p-10 text-center text-white">
-          <h2 className="text-2xl font-bold">Submission Complete</h2>
-          <p className="mt-3 text-white/70">
-            Your intake has been received. We’ll be in touch shortly.
-          </p>
-        </div>
-      </div>
-    );
-  }
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={methods.handleSubmit(
+          async (values) => {
+            setSubmitStatus(null);
+
+            try {
+              await sendSchoolSafetyIntakeEmail({
+                ...defaultIntakeValues,
+                consent: values.consent,
+                schoolContact: values.schoolContact,
+                finalConfirmation: values.finalConfirmation,
+              } as SchoolSafetyIntakeValues);
+
+              clearIntakeDraft();
+              reset({
+                consent: defaultIntakeValues.consent,
+                schoolContact: defaultIntakeValues.schoolContact,
+                finalConfirmation: defaultIntakeValues.finalConfirmation,
+              });
+              setStep(1);
+
+              setSubmitStatus({
+                type: "success",
+                message:
+                  "Intake submitted successfully. We’ll be in touch shortly.",
+              });
+            } catch (error) {
+              console.error("School intake email failed:", error);
+              setSubmitStatus({
+                type: "error",
+                message: "We couldn't submit the intake. Please try again.",
+              });
+            }
+          },
+          (errors) => {
+            console.log("Submit blocked by validation:", errors);
+          },
+        )}
+        className="space-y-8">
         <IntakeProgress currentStep={step} totalSteps={TOTAL_STEPS} />
 
         {submitStatus && (
@@ -206,17 +182,6 @@ export default function SchoolSafetyIntake() {
             onEditSection={(targetStep) => setStep(targetStep)}
           />
         )}
-        {/* {step === 3 && <SafetyStatusStep />}
-        {step === 4 && <IncidentsConcernsStep />}
-        {step === 5 && <SystemsResourcesStep />}
-        {step === 6 && <PhysicalSecurityStep />}
-        {step === 7 && <CapacityBarriersStep />}
-        {step === 8 && <ServicesNextStepsStep />}
-        {step === 9 && (
-          <ReviewSubmitStep
-            onEditSection={(targetStep) => setStep(targetStep)}
-          />
-        )} */}
 
         <IntakeNavigation
           step={step}

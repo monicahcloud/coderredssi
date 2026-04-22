@@ -156,14 +156,30 @@ export default function StatsPage() {
                   </li>
                   <li className="mb-2">
                     • Annual costs of school crime at about{" "}
-                    <span className="text-red-500">$3.5B</span> dollars
+                    <span className="relative font-bold text-white">
+                      <span className="relative z-10  text-red-400">
+                        $3.5B{" "}
+                      </span>
+                      <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                    </span>
+                    dollars
                   </li>
 
                   <li className="mt-auto flex min-h-[140px]  border-t border-red-500/30 pt-3 text-base font-bold text-white text-center">
                     <span>
                       Non-fatal gunshot injuries on school campuses cost the
                       average victim
-                      <span className="text-red-500"> about $100,000</span>
+                      <br />
+                      <span className="relative font-bold text-white">
+                        <span className="relative z-10  text-red-400 text-xl">
+                          about $100,000{" "}
+                        </span>
+                        <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                      </span>
+                      {/* <span className="text-red-500 font-bold underline">
+                        {" "}
+                        about $100,000
+                      </span> */}
                     </span>
                   </li>
                 </ul>
@@ -180,19 +196,45 @@ export default function StatsPage() {
                     premiums
                   </li>
                   <li className="mb-2">
-                    • Over <span className="text-red-500">$430M+</span> from
-                    property loss and damage in U.S. schools
+                    • Over{" "}
+                    <span className="relative font-bold text-white">
+                      <span className="relative z-10  text-red-400">
+                        $430M+{" "}
+                      </span>
+                      <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                    </span>
+                    {/* <span className="text-red-500 font-bold underline">
+                      $430M+
+                    </span>{" "} */}
+                    from property loss and damage in U.S. schools
                   </li>
                   <li className="mb-2">
-                    • <span className="text-red-500">$600M+</span> annual cost
-                    from school-based crime across healthcare, mental health
-                    services, lost productivity, and property damage
+                    •{" "}
+                    <span className="relative font-bold text-white">
+                      <span className="relative z-10  text-red-400">
+                        $600+{" "}
+                      </span>
+                      <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                    </span>
+                    {/* <span className="text-red-500 font-bold underline">
+                      $600M+
+                    </span>{" "} */}
+                    annual cost from school-based crime across healthcare,
+                    mental health services, lost productivity, and property
+                    damage
                   </li>
 
                   <li className="mt-auto flex min-h-[140px] border-t border-red-500/30 pt-3 text-base font-bold text-white text-center">
                     <span>
-                      Nearly <span className="text-red-500">$60 million</span> a
-                      year from serious on-campus assaults and gunshot injuries
+                      Nearly{" "}
+                      <span className="relative font-bold text-white">
+                        <span className="relative z-10  text-red-400 text-xl">
+                          $60 Million{" "}
+                        </span>
+                        <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                      </span>{" "}
+                      a year from serious on-campus assaults and gunshot
+                      injuries
                     </span>
                   </li>
                 </ul>
@@ -213,9 +255,15 @@ export default function StatsPage() {
 
                   <li className="mt-auto flex min-h-[140px] border-t border-red-500/30 pt-3 text-base font-bold text-white text-center">
                     <span>
-                      Estimates about{" "}
-                      <span className="text-red-500">$11 trillion</span> in lost
-                      lifetime earnings
+                      Estimates about <br />
+                      <span className="relative font-bold text-white">
+                        <span className="relative z-10  text-red-400 text-xl">
+                          $11 Trillion
+                        </span>
+                        <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
+                      </span>
+                      <br />
+                      in lost lifetime earnings
                     </span>
                   </li>
                 </ul>

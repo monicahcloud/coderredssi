@@ -16,8 +16,12 @@ const pillars = [
     badge: "/images/assesmentpillar.png",
     title: "Physical Assessments",
     image: "/images/hallwaymonitors.png",
+    impact:
+      "This pillar connects on-the-ground realities, such as doors, sightlines, and traffic patterns, to strategic decisions, ensuring every facilities dollar directly reduces exposure to harm.  ",
     description:
-      "Our Physical Assessment establishes a clear, objective understanding of a school’s current security posture. We conduct on-site evaluations to identify vulnerabilities, assess readiness, and document physical risks across campus facilities. Findings are translated into actionable insights that inform immediate improvements and long-term security planning.",
+      "Our Physical Assessment Program establishes a clear, objective understanding of a school’s current security posture. We conduct on-site evaluations to identify vulnerabilities, assess readiness, and document physical risks across campus facilities. Findings are translated into actionable insights that inform immediate improvements and long-term security planning.",
+    purpose:
+      "Many schools invest in security piecemeal, without knowing what matters most. A professional physical assessment replaces guesswork with evidence, allowing even resource-limited campuses to make smart, life-saving choices.",
     features: [
       "Infrastructure vulnerability audits",
       "Operational risk analysis",
@@ -29,8 +33,12 @@ const pillars = [
     badge: "/images/educationpillar.png",
     image: "/images/classroom.png",
     title: "Education",
+    impact:
+      "This pillar builds operational readiness by transforming static safety plans into rehearsed behaviors that staff and students can execute consistently under stress.",
     description:
-      "Education ensures that safety plans are not just written, but understood and executed under pressure. Through structured, role-based training, we equip teachers, staff, and students with the knowledge and confidence to respond effectively during emergencies. Instruction emphasizes clarity, repetition, and practical application to reduce confusion and improve outcomes.",
+      "Our Education Program ensures that safety plans are not just written, but understood and executed under pressure. Through structured, role-based training, we equip teachers, staff, and students with the knowledge and confidence to respond effectively during emergencies. Instruction emphasizes clarity, repetition, and practical application to reduce confusion and improve outcomes.",
+    purpose:
+      "Schools need more than annual drills; they need confident people who understand their roles before, during, and after a critical event. Education turns anxiety into action, giving communities greater trust that their campus can respond and recover. ",
     features: [
       "Administrative readiness",
       "Student crisis training",
@@ -40,8 +48,10 @@ const pillars = [
   },
   {
     badge: "/images/equipmentpillar.png",
-    image: "/images/hallwaymonitors.png",
+    image: "/images/schoolcamera.png",
     title: "Equipment",
+    impact:
+      "This pillar embeds a continuous improvement loop into school safety, ensuring lessons learned from drills and incidents are captured, shared, and built into the next round of planning.",
     description:
       "Equipment translates assessment findings and training plans into real-world capability. We oversee the coordinated deployment of physical security technologies to ensure systems are properly selected, integrated, and functional. The focus is not just on installing equipment, but on ensuring it operates as a unified, reliable security ecosystem.",
     features: [
@@ -53,10 +63,14 @@ const pillars = [
   },
   {
     badge: "/images/reassesspillar.png",
-    image: "/images/teammeeting.png",
+    image: "/images/securityassessment.png",
     title: "Reassessment",
+    impact:
+      "This pillar embeds a continuous improvement loop into school safety, ensuring lessons learned from drills and incidents are captured, shared, and built into the next round of planning. ",
     description:
       "Reassessment ensures that security efforts remain effective over time. Through routine audits, post-incident reviews, and scheduled evaluations, we verify that systems, procedures, and training continue to function as intended. This ongoing process allows schools to adapt to changing environments, emerging threats, and operational lessons learned.",
+    purpose:
+      "Threats, campus layouts, and student populations change, but many safety plans do not. Reassessment prevents schools from relying on outdated assumptions and helps leaders invest where it will make the greatest difference.",
     features: [
       "Post-implementation audits",
       "After-action reviews",
@@ -157,7 +171,7 @@ export default function ImpactFramework() {
                 </motion.button>
               </DialogTrigger>
 
-              <DialogContent className="max-h-[90vh] overflow-y-auto border-0 bg-transparent p-0 shadow-none sm:max-w-4xl">
+              <DialogContent className="max-h-[90vh] overflow-y-auto border-0 bg-transparent p-0 shadow-none max-w-4xl md:max-w-5xl">
                 <div className="overflow-hidden border border-black/40 bg-[#f3efe9] shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
                   {/* TOP HERO PANEL */}
                   <div className="relative overflow-hidden bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] px-5 py-6 md:px-10 md:py-10">
@@ -187,12 +201,12 @@ export default function ImpactFramework() {
                         </DialogHeader>
                       </div>
 
-                      <div className="hidden max-w-xs border-l border-white/15 pl-6 md:block">
+                      {/* <div className="hidden max-w-xs border-l border-white/15 pl-6 md:block">
                         <p className="text-sm leading-relaxed text-white/75">
                           One coordinated pillar within the Code Red framework
                           for safer, stronger, more resilient schools.
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
@@ -211,12 +225,10 @@ export default function ImpactFramework() {
                           </p>
                         </div>
                       </div>
-
                       <div>
                         <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
                           Key Focus Areas
                         </p>
-
                         <div className="relative pl-8">
                           <div className="absolute left-[11px] top-1 bottom-1 w-px bg-slate-300" />
 
@@ -236,36 +248,51 @@ export default function ImpactFramework() {
                             ))}
                           </div>
                         </div>
+                      </div>{" "}
+                      <div className="my-6 h-px w-full bg-gradient-to-r from-transparent via-black/20 to-transparent" />
+                      <div className="sm:mt-15 md:-mt-30 ">
+                        {pillar.image && (
+                          <div className=" overflow-hidden">
+                            <div className="relative w-full h-[260px] sm:h-[320px] md:h-[420px] lg:h-[520px]">
+                              <Image
+                                src={pillar.image}
+                                alt={pillar.title.replace("\n", " ")}
+                                fill
+                                className="object-contain opacity-95"
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
 
                     {/* RIGHT COLUMN */}
                     <div className="bg-[#ece6df] px-5 py-5 md:px-8 md:py-8">
+                      <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
+                        Strategic Impact
+                      </p>{" "}
                       <div className="border border-primary/15 bg-primary/5 px-4 py-4 md:px-5 md:py-5">
-                        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-                          Strategic Impact
-                        </p>
-
                         <p className="text-sm leading-7 text-slate-900 md:text-[15px]">
-                          This pillar strengthens operational readiness by
-                          turning safety priorities into structured, repeatable
-                          action across the school environment.
+                          {pillars.map((feature) => (
+                            <span key={feature.title} className="block">
+                              {feature.purpose}
+                            </span>
+                          ))}
                         </p>
                       </div>
-
-                      <div className="mt-6 border border-black/10 bg-white px-4 py-4 md:px-5 md:py-5">
-                        <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
-                          Why It Matters
-                        </p>
-
+                      <p className="mt-6 mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
+                        Why It Matters
+                      </p>
+                      <div className=" border border-black/10 bg-white px-4 py-4 md:px-5 md:py-5">
                         <p className="text-sm leading-7 text-slate-700 md:text-[15px]">
-                          Schools need more than isolated fixes. Each pillar
-                          supports a wider readiness system that improves
-                          visibility, coordination, and long-term resilience.
+                          {pillars.map((feature) => (
+                            <span key={feature.title} className="block">
+                              {feature.purpose}
+                            </span>
+                          ))}
                         </p>
                       </div>
-
-                      {pillar.image && (
+                      {/* {pillar.image && (
                         <div className="mt-6 overflow-hidden border border-black/10 bg-black">
                           <div className="relative h-[180px] w-full sm:h-[220px]">
                             <Image
@@ -276,7 +303,7 @@ export default function ImpactFramework() {
                             />
                           </div>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>

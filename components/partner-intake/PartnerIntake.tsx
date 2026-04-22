@@ -12,15 +12,12 @@ import {
 
 import PartnerProgress from "./PartnerProgress";
 import PartnerNavigation from "./PartnerNavigation";
-
 import ContactInfoStep from "./steps/ContactInfoStep";
 import OrganizationProfileStep from "./steps/OrganizationProfileStep";
-import InterestStep from "./steps/InterestStep";
-import AlignmentStep from "./steps/AlignmentStep";
-import DecisionStep from "./steps/DecisionStep";
 import ReviewSubmitStep from "./steps/ReviewSubmitStep";
+import { sendPartnerIntakeEmail } from "@/lib/email/emailjs";
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 3;
 
 export default function PartnerIntake() {
   const [step, setStep] = useState(1);
@@ -48,32 +45,32 @@ export default function PartnerIntake() {
         size: "",
         reach: "",
       },
-      interest: {
-        partnershipType: [],
-        givingLevel: "",
-        timeframe: "",
-        existingRelationship: "",
-      },
-      alignment: {
-        why: "",
-        outcomes: "",
-        priorExperience: "",
-        impactType: "",
-        inKindSupport: "",
-      },
-      decision: {
-        approvers: "",
-        timeline: "",
-        budgetApproved: "",
-        nextStep: "",
-      },
+      // interest: {
+      //   partnershipType: [],
+      //   givingLevel: "",
+      //   timeframe: "",
+      //   existingRelationship: "",
+      // },
+      // alignment: {
+      //   why: "",
+      //   outcomes: "",
+      //   priorExperience: "",
+      //   impactType: "",
+      //   inKindSupport: "",
+      // },
+      // decision: {
+      //   approvers: "",
+      //   timeline: "",
+      //   budgetApproved: "",
+      //   nextStep: "",
+      // },
       finalConfirmation: {
         agree: false,
       },
     },
   });
 
-  const { trigger, handleSubmit, formState } = methods;
+  const { trigger, handleSubmit, reset, formState } = methods;
 
   const fieldsByStep = useMemo<Record<number, string[]>>(
     () => ({
@@ -92,26 +89,26 @@ export default function PartnerIntake() {
         "organizationProfile.size",
         "organizationProfile.reach",
       ],
-      3: [
-        "interest.partnershipType",
-        "interest.givingLevel",
-        "interest.timeframe",
-        "interest.existingRelationship",
-      ],
-      4: [
-        "alignment.why",
-        "alignment.outcomes",
-        "alignment.priorExperience",
-        "alignment.impactType",
-        "alignment.inKindSupport",
-      ],
-      5: [
-        "decision.approvers",
-        "decision.timeline",
-        "decision.budgetApproved",
-        "decision.nextStep",
-      ],
-      6: ["finalConfirmation.agree"],
+      // 3: [
+      //   "interest.partnershipType",
+      //   "interest.givingLevel",
+      //   "interest.timeframe",
+      //   "interest.existingRelationship",
+      // ],
+      // 4: [
+      //   "alignment.why",
+      //   "alignment.outcomes",
+      //   "alignment.priorExperience",
+      //   "alignment.impactType",
+      //   "alignment.inKindSupport",
+      // ],
+      // 5: [
+      //   "decision.approvers",
+      //   "decision.timeline",
+      //   "decision.budgetApproved",
+      //   "decision.nextStep",
+      // ],
+      3: ["finalConfirmation.agree"],
     }),
     [],
   );
@@ -140,33 +137,55 @@ export default function PartnerIntake() {
     setStep((prev) => Math.max(prev - 1, 1));
   };
 
+  // const onSubmit = async (values: PartnerIntakeValues) => {
+  //   setSubmitStatus(null);
+
+  //   try {
+  //     const res = await fetch("/api/contact", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         type: "partner",
+  //         ...values,
+  //       }),
+  //     });
+
+  //     const result = await res.json();
+
+  //     if (!res.ok || !result.success) {
+  //       throw new Error(result.message || "Submission failed.");
+  //     }
+
+  //     setSubmitStatus({
+  //       type: "success",
+  //       message: "Partner interest submitted successfully.",
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //     setSubmitStatus({
+  //       type: "error",
+  //       message: "We couldn't submit the partner intake. Please try again.",
+  //     });
+  //   }
+  // };
+
   const onSubmit = async (values: PartnerIntakeValues) => {
     setSubmitStatus(null);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type: "partner",
-          ...values,
-        }),
-      });
+      await sendPartnerIntakeEmail(values);
 
-      const result = await res.json();
-
-      if (!res.ok || !result.success) {
-        throw new Error(result.message || "Submission failed.");
-      }
+      reset();
+      setStep(1);
 
       setSubmitStatus({
         type: "success",
         message: "Partner interest submitted successfully.",
       });
     } catch (error) {
-      console.error(error);
+      console.error("Partner intake email failed:", error);
       setSubmitStatus({
         type: "error",
         message: "We couldn't submit the partner intake. Please try again.",
@@ -200,10 +219,10 @@ export default function PartnerIntake() {
 
         {step === 1 && <ContactInfoStep />}
         {step === 2 && <OrganizationProfileStep />}
-        {step === 3 && <InterestStep />}
+        {/* {step === 3 && <InterestStep />}
         {step === 4 && <AlignmentStep />}
-        {step === 5 && <DecisionStep />}
-        {step === 6 && (
+        {step === 5 && <DecisionStep />} */}
+        {step === 3 && (
           <ReviewSubmitStep
             onEditSection={(targetStep) => setStep(targetStep)}
           />

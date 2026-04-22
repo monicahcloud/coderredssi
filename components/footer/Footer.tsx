@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-foreground text-background border-t border-background/5">
-      <div className="container mx-auto px-6 lg:px-8 pt-20 pb-10">
+      <div className=" mx-auto px-6 lg:px-8 pt-20 pb-10">
         <div className="grid gap-16 lg:grid-cols-12">
           {/* Brand & Mission */}
           <div className="lg:col-span-5 space-y-8">
@@ -45,7 +45,7 @@ const Footer = () => {
                 Initiative Focus
               </h4>
               <ul className="space-y-4 text-sm font-bold text-background/70">
-                <li>Physical Assessments</li>
+                <li>Physical Assessments Program</li>
                 <li>Education and Training</li>
                 <li>Safety Equipment Coordination</li>
                 <li>Ongoing Reassessment & Support</li>
@@ -98,10 +98,10 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col items-center md:items-end gap-1">
-              <span className="text-[8px] font-black uppercase tracking-[0.3em] text-background/20 group-hover:text-primary transition-colors">
+              <span className="text-[12px] font-black uppercase tracking-[0.3em] text-background/20 group-hover:text-primary transition-colors">
                 Architecture by
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-tighter text-background/40 group-hover:text-background transition-colors">
+              <span className="text-[15px] font-mono font-bold tracking-tighter text-background/40 group-hover:text-background transition-colors">
                 VitaNova Designs
               </span>
             </a>

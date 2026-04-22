@@ -5,9 +5,9 @@ import { Progress } from "@/components/ui/progress";
 const PARTNER_STEP_TITLES = [
   "Contact Info",
   "Organization Profile",
-  "Partnership Interest",
-  "Alignment & Intent",
-  "Decision & Next Steps",
+  // "Partnership Interest",
+  // "Alignment & Intent",
+  // "Decision & Next Steps",
   "Review & Submit",
 ] as const;
 

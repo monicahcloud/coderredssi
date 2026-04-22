@@ -12,7 +12,7 @@ function Logo() {
         width={1840}
         height={860}
         priority
-        className="h-auto w-[110px] sm:w-[130px] md:w-[150px] lg:w-[170px] object-contain"
+        className="h-auto w-[140px] sm:w-[180px] md:w-[220px] lg:w-[260px] xl:w-[300px] object-contain"
       />
     </Link>
   );
