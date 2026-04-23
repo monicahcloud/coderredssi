@@ -6,7 +6,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
-  partnerIntakeSchema,
+  partnerIntakeLiteSchema,
+  type PartnerIntakeLiteInput,
+  type PartnerIntakeLiteValues,
   type PartnerIntakeValues,
 } from "@/lib/partner/schemas";
 
@@ -26,8 +28,12 @@ export default function PartnerIntake() {
     message: string;
   } | null>(null);
 
-  const methods = useForm<PartnerIntakeValues>({
-    resolver: zodResolver(partnerIntakeSchema),
+  const methods = useForm<
+    PartnerIntakeLiteInput,
+    unknown,
+    PartnerIntakeLiteValues
+  >({
+    resolver: zodResolver(partnerIntakeLiteSchema),
     mode: "onBlur",
     defaultValues: {
       contact: {
@@ -45,31 +51,11 @@ export default function PartnerIntake() {
         size: "",
         reach: "",
       },
-      // interest: {
-      //   partnershipType: [],
-      //   givingLevel: "",
-      //   timeframe: "",
-      //   existingRelationship: "",
-      // },
-      // alignment: {
-      //   why: "",
-      //   outcomes: "",
-      //   priorExperience: "",
-      //   impactType: "",
-      //   inKindSupport: "",
-      // },
-      // decision: {
-      //   approvers: "",
-      //   timeline: "",
-      //   budgetApproved: "",
-      //   nextStep: "",
-      // },
       finalConfirmation: {
         agree: false,
       },
     },
   });
-
   const { trigger, handleSubmit, reset, formState } = methods;
 
   const fieldsByStep = useMemo<Record<number, string[]>>(
@@ -137,62 +123,6 @@ export default function PartnerIntake() {
     setStep((prev) => Math.max(prev - 1, 1));
   };
 
-  // const onSubmit = async (values: PartnerIntakeValues) => {
-  //   setSubmitStatus(null);
-
-  //   try {
-  //     const res = await fetch("/api/contact", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         type: "partner",
-  //         ...values,
-  //       }),
-  //     });
-
-  //     const result = await res.json();
-
-  //     if (!res.ok || !result.success) {
-  //       throw new Error(result.message || "Submission failed.");
-  //     }
-
-  //     setSubmitStatus({
-  //       type: "success",
-  //       message: "Partner interest submitted successfully.",
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //     setSubmitStatus({
-  //       type: "error",
-  //       message: "We couldn't submit the partner intake. Please try again.",
-  //     });
-  //   }
-  // };
-
-  const onSubmit = async (values: PartnerIntakeValues) => {
-    setSubmitStatus(null);
-
-    try {
-      await sendPartnerIntakeEmail(values);
-
-      reset();
-      setStep(1);
-
-      setSubmitStatus({
-        type: "success",
-        message: "Partner interest submitted successfully.",
-      });
-    } catch (error) {
-      console.error("Partner intake email failed:", error);
-      setSubmitStatus({
-        type: "error",
-        message: "We couldn't submit the partner intake. Please try again.",
-      });
-    }
-  };
-
   if (submitStatus?.type === "success") {
     return (
       <div className="flex min-h-[400px] items-center justify-center px-6">
@@ -208,7 +138,56 @@ export default function PartnerIntake() {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={methods.handleSubmit(
+          async (values) => {
+            setSubmitStatus(null);
+
+            try {
+              await sendPartnerIntakeEmail({
+                ...values,
+                interest: {
+                  partnershipType: [],
+                  givingLevel: "N/A",
+                  timeframe: "N/A",
+                  existingRelationship: "N/A",
+                },
+                alignment: {
+                  why: "N/A",
+                  outcomes: "N/A",
+                  priorExperience: "N/A",
+                  impactType: "N/A",
+                  inKindSupport: "N/A",
+                },
+                decision: {
+                  approvers: "N/A",
+                  timeline: "N/A",
+                  budgetApproved: "N/A",
+                  nextStep: "N/A",
+                },
+              } as PartnerIntakeValues);
+
+              reset();
+              setStep(1);
+
+              setSubmitStatus({
+                type: "success",
+                message: "Partner interest submitted successfully.",
+              });
+            } catch (error) {
+              console.error("Partner intake email failed:", error);
+              setSubmitStatus({
+                type: "error",
+                message:
+                  "We couldn't submit the partner intake. Please try again.",
+              });
+            }
+          },
+          (errors) => {
+            console.log("Partner submit blocked by validation:", errors);
+          },
+        )}
+        className="space-y-8">
         <PartnerProgress step={step} total={TOTAL_STEPS} />
 
         {submitStatus && (
@@ -219,9 +198,6 @@ export default function PartnerIntake() {
 
         {step === 1 && <ContactInfoStep />}
         {step === 2 && <OrganizationProfileStep />}
-        {/* {step === 3 && <InterestStep />}
-        {step === 4 && <AlignmentStep />}
-        {step === 5 && <DecisionStep />} */}
         {step === 3 && (
           <ReviewSubmitStep
             onEditSection={(targetStep) => setStep(targetStep)}

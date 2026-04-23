@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const partnerIntakeSchema = z.object({
+export const partnerIntakeBaseSchema = z.object({
   contact: z.object({
     name: z.string().min(1),
     title: z.string().min(1),
@@ -46,4 +46,17 @@ export const partnerIntakeSchema = z.object({
     }),
   }),
 });
-export type PartnerIntakeValues = z.infer<typeof partnerIntakeSchema>;
+
+export const partnerIntakeLiteSchema = partnerIntakeBaseSchema.pick({
+  contact: true,
+  organizationProfile: true,
+  finalConfirmation: true,
+});
+
+export const partnerIntakeSchema = partnerIntakeBaseSchema;
+
+export type PartnerIntakeValues = z.output<typeof partnerIntakeSchema>;
+
+export type PartnerIntakeLiteInput = z.input<typeof partnerIntakeLiteSchema>;
+
+export type PartnerIntakeLiteValues = z.output<typeof partnerIntakeLiteSchema>;
