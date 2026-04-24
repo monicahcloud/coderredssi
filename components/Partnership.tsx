@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, Award, Crown, Medal, Shield } from "lucide-react";
+import { Award, Crown, Medal, Shield, Star } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PartnerCTA } from "./cta/PartnerCTA";
 import React from "react";
@@ -11,6 +11,7 @@ const PARTNERSHIP_TIERS = [
   {
     label: "Bronze",
     tier: "Community Partner",
+    star: "bronze",
     value: "$25K - $100K",
     impact: "7.5K+ students and staff protected",
     schools: "3–5 schools",
@@ -24,6 +25,7 @@ const PARTNERSHIP_TIERS = [
   {
     label: "Silver",
     tier: "District Partner",
+    star: "silver",
     value: "$100K - $500K",
     impact: "20K+ students and staff protected",
     schools: "10–25 schools",
@@ -37,6 +39,7 @@ const PARTNERSHIP_TIERS = [
   {
     label: "Gold",
     tier: "Regional Partner",
+    star: "gold",
     value: "$500K - $2M",
     impact: "50K+ students and staff protected",
     schools: "25–50 schools",
@@ -50,6 +53,7 @@ const PARTNERSHIP_TIERS = [
   {
     label: "Diamond",
     tier: "National Partner",
+    star: "diamond",
     value: "$2M+",
     impact: "150K+ students and staff protected",
     schools: "100+ schools",
@@ -61,6 +65,17 @@ const PARTNERSHIP_TIERS = [
     offsetClass: "mt-24",
   },
 ];
+const tierStyles = {
+  bronze:
+    "text-amber-700 fill-amber-700 drop-shadow-[0_0_6px_rgba(217,119,6,0.5)]",
+  silver:
+    "text-slate-300 fill-slate-300 drop-shadow-[0_0_6px_rgba(203,213,225,0.5)]",
+  gold: "text-yellow-400 fill-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.7)]",
+  diamond:
+    "text-cyan-300 fill-cyan-300 drop-shadow-[0_0_10px_rgba(103,232,249,0.8)]",
+};
+
+type Tier = keyof typeof tierStyles;
 
 export default function FoundingAlliance() {
   const router = useRouter();
@@ -184,12 +199,14 @@ export default function FoundingAlliance() {
                       </div>
 
                       {/* stars */}
-                      <div className="mt-2 flex items-center gap-1 text-yellow-400">
-                        <span>★</span>
-                        <span>★</span>
-                        <span>★</span>
+                      <div className="flex gap-1 pt-1">
+                        {Array.from({ length: 3 }).map((_, index) => (
+                          <Star
+                            key={index}
+                            className={`h-4 w-4 ${tierStyles[tier.star as Tier]}`}
+                          />
+                        ))}
                       </div>
-
                       <p className="mt-4 text-3xl font-black leading-none text-white sm:text-3xl">
                         {tier.value}
                       </p>
@@ -209,10 +226,10 @@ export default function FoundingAlliance() {
                         {tier.level}
                       </p>
 
-                      <div className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/70">
+                      {/* <div className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/70">
                         Explore Tier
                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   {/* sweep */}

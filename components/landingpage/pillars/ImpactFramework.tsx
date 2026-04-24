@@ -114,11 +114,11 @@ export default function ImpactFramework() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="group relative w-full min-h-[280px] sm:min-h-[340px] md:min-h-[520px] lg:min-h-[560px] transition-all duration-300 md:hover:-translate-y-2 md:hover:shadow-[0_22px_50px_rgba(120,0,0,0.28)]">
-                  <div className="relative h-full w-full md:[perspective:1200px]">
-                    <div className="relative h-full w-full transition-transform duration-700 md:[transform-style:preserve-3d] md:group-hover:[transform:rotateY(180deg)]">
+                  className="flip-card group relative w-full min-h-[280px] sm:min-h-[340px] md:min-h-[520px] lg:min-h-[560px] transition-all duration-300 md:hover:-translate-y-2 md:hover:shadow-[0_22px_50px_rgba(120,0,0,0.28)]">
+                  <div className="relative h-full w-full [perspective:1200px] [-webkit-perspective:1200px]">
+                    <div className="relative h-full w-full flip-card-inner">
                       {/* FRONT */}
-                      <div className="absolute inset-0 flex h-full flex-col bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] p-4 sm:p-5 md:p-6 md:[backface-visibility:hidden]">
+                      <div className="flip-card-front absolute inset-0 flex h-full flex-col bg-linear-to-r from-[#7a0000] via-[#650101] to-[#a70000] p-4 sm:p-5 md:p-6">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.12),transparent_35%)]" />
 
                         <div className="relative z-10 flex flex-1 items-center justify-center pt-2 pb-2">
@@ -144,7 +144,7 @@ export default function ImpactFramework() {
                       </div>
 
                       {/* BACK - desktop only */}
-                      <div className="absolute inset-0 hidden h-full flex-col justify-between overflow-y-auto bg-gradient-to-b from-[#1a0000] via-[#2b0000] to-[#000000] p-5 text-white md:flex md:[transform:rotateY(180deg)] md:[backface-visibility:hidden] [-webkit-overflow-scrolling:touch]">
+                      <div className="flip-card-back absolute inset-0 hidden h-full flex-col justify-between overflow-y-auto bg-gradient-to-b from-[#1a0000] via-[#2b0000] to-[#000000] p-5 text-white md:flex">
                         <div className="min-h-full">
                           <div>
                             <h3 className="mb-4 text-2xl font-bold italic text-white">
