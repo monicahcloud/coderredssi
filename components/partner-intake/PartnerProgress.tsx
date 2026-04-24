@@ -39,7 +39,7 @@ export default function PartnerProgress({ step, total }: PartnerProgressProps) {
 
       <Progress value={progressValue} className="h-2 bg-white/10" />
 
-      <div className="grid grid-cols-3 gap-2 md:grid-cols-6">
+      <div className="grid grid-cols-3 gap-2">
         {PARTNER_STEP_TITLES.map((title, index) => {
           const stepNumber = index + 1;
           const isActive = stepNumber === step;
