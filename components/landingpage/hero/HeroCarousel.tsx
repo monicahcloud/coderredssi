@@ -159,22 +159,21 @@ export default function HeroCarousel() {
                     isActive={index === activeIndex}
                   />
                 </motion.div>
-                <div className="relative z-10 mx-auto flex h-screen w-full max-w-8xl items-start px-4 pt-20 sm:px-6 sm:pt-28 lg:items-center lg:px-25 lg:pt-0">
+                <div className="relative z-10 mx-auto flex h-screen w-full max-w-8xl items-start px-5 pt-24 sm:px-8 sm:pt-28 md:px-12 md:pt-32 lg:px-20 lg:pt-36 xl:px-25">
                   <div className="grid w-full gap-10 lg:grid-cols-2 lg:items-center">
                     <div className="max-w-2xl pt-2 sm:pt-4 lg:pt-0">
-                      <div className="text-3xl font-bold leading-[1.05] sm:text-5xl lg:text-7xl">
+                      <div className="max-w-[92%] text-[2rem] font-bold leading-[1.05] sm:text-5xl md:max-w-[80%] md:text-6xl lg:max-w-2xl lg:text-7xl">
                         {slide.title}
                       </div>
-
-                      <p className="mt-4 text-base leading-7 text-white/80 sm:mt-6 sm:text-2xl">
+                      <p className="mt-4 max-w-[92%] text-sm leading-6 text-white/85 sm:max-w-[80%] sm:text-base md:text-lg md:leading-7 lg:max-w-2xl lg:text-2xl">
                         {slide.description}
                       </p>
 
-                      <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                      <div className="mt-6 flex flex-col gap-4 sm:mt-8 sm:flex-row sm:items-center">
                         <Button
                           size="lg"
                           onClick={() => scrollToSection(slide.cta.target)}
-                          className="rounded-full px-6 text-sm font-bold uppercase tracking-[0.04em]">
+                          className="h-11 w-full rounded-full px-5 text-xs font-bold uppercase tracking-[0.04em] sm:w-auto sm:px-6 sm:text-sm">
                           {slide.cta.label}
                         </Button>
                       </div>
@@ -189,12 +188,46 @@ export default function HeroCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-1 sm:left-6 top-1/2 z-40 -translate-y-1/2 h-10 w-10 sm:h-14 sm:w-14 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-black/70 [&>svg]:h-5 [&>svg]:w-5 sm:[&>svg]:h-7 sm:[&>svg]:w-7" />
+        <CarouselPrevious
+          className="
+    left-8 top-[66%] z-50 -translate-y-1/2
+    h-14 w-14 border-none bg-transparent shadow-none
+    text-white hover:bg-transparent hover:text-white
+    transition-all duration-300 hover:scale-110
 
-        <CarouselNext className="right-2 sm:right-6 top-1/2 z-40 -translate-y-1/2 h-10 w-10 sm:h-14 sm:w-14 rounded-full border border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-black/70 [&>svg]:h-5 [&>svg]:w-5 sm:[&>svg]:h-7 sm:[&>svg]:w-7" />
+    sm:left-8 sm:top-[62%] sm:h-16 sm:w-16
+    md:left-10 md:top-1/2 md:h-18 md:w-18
+    lg:left-6 lg:h-20 lg:w-20
+
+    [&_svg]:!h-10 [&_svg]:!w-10
+    sm:[&_svg]:!h-12 sm:[&_svg]:!w-12
+    md:[&_svg]:!h-14 md:[&_svg]:!w-14
+    lg:[&_svg]:!h-16 lg:[&_svg]:!w-16
+  "
+        />
+
+        <CarouselNext
+          className="
+    right-8 top-[66%] z-50 -translate-y-1/2
+    h-14 w-14 border-none bg-transparent shadow-none
+    text-white hover:bg-transparent hover:text-white
+    transition-all duration-300 hover:scale-110
+
+    sm:right-8 sm:top-[62%] sm:h-16 sm:w-16
+    md:right-10 md:top-1/2 md:h-18 md:w-18
+    lg:right-8 lg:h-20 lg:w-20
+
+    [&_svg]:!h-10 [&_svg]:!w-10
+    sm:[&_svg]:!h-12 sm:[&_svg]:!w-12
+    md:[&_svg]:!h-14 md:[&_svg]:!w-14
+    lg:[&_svg]:!h-16 lg:[&_svg]:!w-16
+  "
+        />
       </Carousel>
-
-      <div className="pointer-events-none absolute bottom-8 left-1/2 z-50 flex -translate-x-1/2 gap-2 sm:bottom-10 sm:gap-3">
+      {/* <div className="absolute bottom-32 left-1/2 z-50 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/90 backdrop-blur-md sm:bottom-36">
+        Slide {activeIndex + 1} of {slides.length}
+      </div> */}
+      <div className="pointer-events-none absolute bottom-34 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3 rounded-full border border-white/20 bg-black/50 px-5 py-3 backdrop-blur-md sm:bottom-40">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -203,14 +236,14 @@ export default function HeroCarousel() {
             onClick={() => api?.scrollTo(index)}
             className="pointer-events-auto group relative flex items-center justify-center">
             <span
-              className={`block h-2 rounded-full transition-all duration-300 ${
+              className={`block h-3 rounded-full transition-all duration-300 ${
                 activeIndex === index
-                  ? "w-6 sm:w-10 bg-primary"
-                  : "w-2 bg-white/70"
+                  ? "w-12 bg-primary shadow-[0_0_18px_rgba(220,0,0,0.9)]"
+                  : "w-3 bg-white/80 hover:bg-white"
               }`}
             />
             {activeIndex === index && (
-              <span className="absolute h-2.5 w-10 rounded-full bg-primary blur-[6px] opacity-60" />
+              <span className="absolute h-4 w-14 rounded-full bg-primary blur-[10px] opacity-70" />
             )}
           </button>
         ))}
