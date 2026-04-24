@@ -32,6 +32,7 @@ export default function SchoolSafetyIntake() {
     type: "success" | "error";
     message: string;
   } | null>(null);
+
   const [isDraftLoaded, setIsDraftLoaded] = useState(false);
 
   const methods = useForm<
@@ -124,7 +125,28 @@ export default function SchoolSafetyIntake() {
     setStep((prev) => Math.max(prev - 1, 1));
   };
 
-  if (!isDraftLoaded) return null;
+  // 1. Success ALWAYS wins
+  if (submitStatus?.type === "success") {
+    return (
+      <div className="flex min-h-[400px] items-center justify-center px-6">
+        <div className="max-w-md rounded-2xl border border-white/10 bg-white/[0.03] p-10 text-center text-white">
+          <h2 className="text-2xl font-bold">Submission Complete</h2>
+          <p className="mt-3 text-white/70">
+            Your school safety intake has been received. We’ll be in touch
+            shortly.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // 2. Then loading gate
+  if (!isDraftLoaded)
+    return (
+      <div className="flex min-h-[200px] items-center justify-center text-white/50 text-sm">
+        Loading...
+      </div>
+    );
 
   return (
     <FormProvider {...methods}>

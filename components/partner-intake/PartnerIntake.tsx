@@ -56,7 +56,7 @@ export default function PartnerIntake() {
       },
     },
   });
-  const { trigger, handleSubmit, reset, formState } = methods;
+  const { trigger, reset, formState } = methods;
 
   const fieldsByStep = useMemo<Record<number, string[]>>(
     () => ({
