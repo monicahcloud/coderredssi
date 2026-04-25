@@ -17,11 +17,11 @@ const pillars = [
     title: "Physical Assessments",
     image: "/images/hallwaymonitors.png",
     impact:
-      "This pillar connects on-the-ground realities, such as doors, sightlines, and traffic patterns, to strategic decisions, ensuring every facilities dollar directly reduces exposure to harm.  ",
+      "Physical assessments give district leaders a clear, prioritized roadmap for investment—what to fix first, what can wait, and what can be done at low or no cost. That clarity helps you justify funding, align stakeholders, and demonstrate due diligence to parents, boards, and insurers.",
     description:
       "Our Physical Assessment Program establishes a clear, objective understanding of a school’s current security posture. We conduct on-site evaluations to identify vulnerabilities, assess readiness, and document physical risks across campus facilities. Findings are translated into actionable insights that inform immediate improvements and long-term security planning.",
     purpose:
-      "Many schools invest in security piecemeal, without knowing what matters most. A professional physical assessment replaces guesswork with evidence, allowing even resource-limited campuses to make smart, life-saving choices.",
+      "You can’t fix what you haven’t measured. A structured physical safety assessment reveals blind spots in campus layout, access control, and emergency readiness that are often invisible to day‑to‑day staff. By turning “we think we’re safe” into evidence‑based findings, schools can move from assumptions to action.",
     features: [
       "Infrastructure vulnerability audits",
       "Operational risk analysis",
@@ -34,11 +34,11 @@ const pillars = [
     image: "/images/classroom.png",
     title: "Education",
     impact:
-      "This pillar builds operational readiness by transforming static safety plans into rehearsed behaviors that staff and students can execute consistently under stress.",
+      "Education transforms safety from a one‑time initiative into a living culture. Ongoing training supports compliance with state requirements, aligns practices across campuses, and gives families visible proof that safety is more than a policy—it’s a priority. Well‑trained people also help protect the district’s reputation and reduce risk exposure.",
     description:
       "Our Education Program ensures that safety plans are not just written, but understood and executed under pressure. Through structured, role-based training, we equip teachers, staff, and students with the knowledge and confidence to respond effectively during emergencies. Instruction emphasizes clarity, repetition, and practical application to reduce confusion and improve outcomes.",
     purpose:
-      "Schools need more than annual drills; they need confident people who understand their roles before, during, and after a critical event. Education turns anxiety into action, giving communities greater trust that their campus can respond and recover. ",
+      "Even the best plans and tools fail if people don’t know what to do. Focused education for staff, students, and volunteers builds the muscle memory needed to respond quickly and calmly in a real emergency. Clear training reduces confusion, panic, and inconsistent responses that can cost precious seconds when it matters most.",
     features: [
       "Administrative readiness",
       "Student crisis training",
@@ -51,9 +51,11 @@ const pillars = [
     image: "/images/schoolcamera.png",
     title: "Equipment",
     impact:
-      "This pillar embeds a continuous improvement loop into school safety, ensuring lessons learned from drills and incidents are captured, shared, and built into the next round of planning.",
+      "Investing in modern safety equipment is a visible, measurable way to upgrade protection without redesigning entire buildings. It supports grant applications and funding requests by tying dollars to specific, high‑impact improvements, and it reassures parents, staff, and community partners that concrete steps are being taken to safeguard students.",
+    purpose:
+      "When a threat appears, the physical environment must immediately work in your favor. Purpose‑built safety equipment—such as reinforced door‑locking devices and barriers—creates instant layers of protection between students and potential harm. The right tools can turn ordinary classrooms into secure spaces in seconds.",
     description:
-      "Equipment translates assessment findings and training plans into real-world capability. We oversee the coordinated deployment of physical security technologies to ensure systems are properly selected, integrated, and functional. The focus is not just on installing equipment, but on ensuring it operates as a unified, reliable security ecosystem.",
+      "Our Equipment Program translates assessment findings and training plans into real-world capability. We oversee the coordinated deployment of physical security technologies to ensure systems are properly selected, integrated, and functional. The focus is not just on installing equipment, but on ensuring it operates as a unified, reliable security ecosystem.",
     features: [
       "Safety hardware support",
       "Resource distribution",
@@ -66,11 +68,11 @@ const pillars = [
     image: "/images/securityassessment.png",
     title: "Reassessment",
     impact:
-      "This pillar embeds a continuous improvement loop into school safety, ensuring lessons learned from drills and incidents are captured, shared, and built into the next round of planning. ",
+      "Reassessments close the loop, turning safety into a continuous improvement cycle instead of a one‑and‑done project. They provide updated data to refine budgets, guide future investments, and show boards and community partners that funds are being used responsibly and effectively over time. This ongoing validation strengthens trust and supports long‑term sustainability for your safety initiatives.",
     description:
-      "Reassessment ensures that security efforts remain effective over time. Through routine audits, post-incident reviews, and scheduled evaluations, we verify that systems, procedures, and training continue to function as intended. This ongoing process allows schools to adapt to changing environments, emerging threats, and operational lessons learned.",
+      "Our Reassessment Program ensures that security efforts remain effective over time. Through routine audits, post-incident reviews, and scheduled evaluations, we verify that systems, procedures, and training continue to function as intended. This ongoing process allows schools to adapt to changing environments, emerging threats, and operational lessons learned.",
     purpose:
-      "Threats, campus layouts, and student populations change, but many safety plans do not. Reassessment prevents schools from relying on outdated assumptions and helps leaders invest where it will make the greatest difference.",
+      "Schools change, threats evolve, and people move on. What was “safe enough” last year may not be sufficient today. Regular reassessments ensure that plans, training, and equipment keep pace with new risks, new buildings, and new students. Without periodic check‑ups, even strong safety programs can quietly drift out of date.",
     features: [
       "Post-implementation audits",
       "After-action reviews",
@@ -200,13 +202,6 @@ export default function ImpactFramework() {
                           </DialogTitle>
                         </DialogHeader>
                       </div>
-
-                      {/* <div className="hidden max-w-xs border-l border-white/15 pl-6 md:block">
-                        <p className="text-sm leading-relaxed text-white/75">
-                          One coordinated pillar within the Code Red framework
-                          for safer, stronger, more resilient schools.
-                        </p>
-                      </div> */}
                     </div>
                   </div>
 
@@ -267,43 +262,27 @@ export default function ImpactFramework() {
                     </div>
 
                     {/* RIGHT COLUMN */}
+                    {/* RIGHT COLUMN */}
                     <div className="bg-[#ece6df] px-5 py-5 md:px-8 md:py-8">
                       <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
                         Strategic Impact
-                      </p>{" "}
+                      </p>
+
                       <div className="border border-primary/15 bg-primary/5 px-4 py-4 md:px-5 md:py-5">
                         <p className="text-sm leading-7 text-slate-900 md:text-[15px]">
-                          {pillars.map((feature) => (
-                            <span key={feature.title} className="block">
-                              {feature.purpose}
-                            </span>
-                          ))}
+                          {pillar.impact}
                         </p>
                       </div>
+
                       <p className="mt-6 mb-2 text-[10px] font-bold uppercase tracking-[0.24em] text-primary">
                         Why It Matters
                       </p>
-                      <div className=" border border-black/10 bg-white px-4 py-4 md:px-5 md:py-5">
+
+                      <div className="border border-black/10 bg-white px-4 py-4 md:px-5 md:py-5">
                         <p className="text-sm leading-7 text-slate-700 md:text-[15px]">
-                          {pillars.map((feature) => (
-                            <span key={feature.title} className="block">
-                              {feature.purpose}
-                            </span>
-                          ))}
+                          {pillar.purpose}
                         </p>
                       </div>
-                      {/* {pillar.image && (
-                        <div className="mt-6 overflow-hidden border border-black/10 bg-black">
-                          <div className="relative h-[180px] w-full sm:h-[220px]">
-                            <Image
-                              src={pillar.image}
-                              alt={pillar.title.replace("\n", " ")}
-                              fill
-                              className="object-contain p-6 sm:p-8 opacity-95"
-                            />
-                          </div>
-                        </div>
-                      )} */}
                     </div>
                   </div>
                 </div>

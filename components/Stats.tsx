@@ -203,9 +203,6 @@ export default function StatsPage() {
                       </span>
                       <span className="absolute left-0 -bottom-1 h-[3px] w-full bg-gradient-to-r from-red-500 via-red-400 to-transparent" />
                     </span>
-                    {/* <span className="text-red-500 font-bold underline">
-                      $430M+
-                    </span>{" "} */}
                     from property loss and damage in U.S. schools
                   </li>
                   <li className="mb-2">

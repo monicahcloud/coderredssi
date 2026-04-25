@@ -21,6 +21,8 @@ const PARTNERSHIP_TIERS = [
     accent: "text-[#d97706]",
     height: "min-h-[320px] lg:min-h-[360px]",
     offsetClass: "mt-0",
+    message:
+      "We help you visibly protect the schools in your key communities, with clear proof of impact at each campus.",
   },
   {
     label: "Silver",
@@ -35,6 +37,8 @@ const PARTNERSHIP_TIERS = [
     accent: "text-gray-400",
     height: "min-h-[360px] lg:min-h-[420px]",
     offsetClass: "mt-6",
+    message:
+      "We help you transform an entire district’s safety posture and give you district-wide data to show exactly what changed.",
   },
   {
     label: "Gold",
@@ -49,6 +53,8 @@ const PARTNERSHIP_TIERS = [
     accent: "text-yellow-400",
     height: "min-h-[400px] lg:min-h-[470px]",
     offsetClass: "mt-12",
+    message:
+      "We help you lead a regional school safety initiative across multiple districts and provide executive-level insights on risk and readiness.",
   },
   {
     label: "Diamond",
@@ -63,6 +69,8 @@ const PARTNERSHIP_TIERS = [
     accent: "text-sky-300",
     height: "min-h-[440px] lg:min-h-[520px]",
     offsetClass: "mt-24",
+    message:
+      "We help you anchor a flagship state-level protection program and position your organization as a statewide leader in school safety.",
   },
 ];
 const tierStyles = {
@@ -225,11 +233,9 @@ export default function FoundingAlliance() {
                         className={`mt-3 text-xl font-black italic ${tier.accent}`}>
                         {tier.level}
                       </p>
-
-                      {/* <div className="mt-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white/70">
-                        Explore Tier
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </div> */}
+                      <p className="mt-4 text-sm leading-relaxed text-white/80">
+                        {tier.message}
+                      </p>
                     </div>
                   </div>
                   {/* sweep */}
