@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
-import { Mail, Phone, ShieldCheck, Handshake } from "lucide-react";
+import { Mail, Phone, ShieldCheck, Handshake, MapPin } from "lucide-react";
 import SchoolSafetyIntake from "../intake/ScholSaftetyIntake";
 import ContactTypeToggle from "./ContactTypeToggle";
 import PartnerIntake from "../partner-intake/PartnerIntake";
@@ -200,6 +200,26 @@ export default function ContactSection() {
                   href="tel:+18442435727"
                   className="text-sm font-semibold text-foreground transition-colors hover:text-primary">
                   (844) 243-5727
+                </a>
+              </div>
+              {/* Address */}
+              {/* Address */}
+              <div className="rounded-[1.5rem] border border-border bg-background p-5 sm:col-span-2 max-w-md mx-auto">
+                <div className="mt-4 flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 text-primary" />
+                  <p className="text-[11px] font-black uppercase tracking-[0.2em]">
+                    Address
+                  </p>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=15257+Amberly+Dr+Ste+537+Tampa+FL"
+                  target="_blank"
+                  className="text-sm font-semibold text-foreground hover:text-primary">
+                  <p className="text-sm font-semibold text-foreground leading-relaxed">
+                    15257 Amberly Dr Ste 537
+                    <br />
+                    Tampa, FL 33647
+                  </p>
                 </a>
               </div>
             </div>
