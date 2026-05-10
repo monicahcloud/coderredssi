@@ -113,60 +113,52 @@
 //     .replace(/'/g, "&#039;");
 // }
 
-// import { NextResponse } from "next/server";
-// import { partnerIntakeSchema } from "@/lib/partner/schemas";
-// import { buildPartnerEmail } from "@/lib/email/contact-email";
+import { NextResponse } from "next/server";
+import { partnerIntakeSchema } from "@/lib/partner/schemas";
+import { buildPartnerEmail } from "@/lib/email/contact-email";
 
-// export async function POST(req: Request) {
-//   try {
-//     const body = await req.json();
+export async function POST(req: Request) {
+  try {
+    const body = await req.json();
 
-//     if (body?.type !== "partner") {
-//       return NextResponse.json(
-//         { success: false, message: "Unsupported contact type." },
-//         { status: 400 },
-//       );
-//     }
+    if (body?.type !== "partner") {
+      return NextResponse.json(
+        { success: false, message: "Unsupported contact type." },
+        { status: 400 },
+      );
+    }
 
-//     const parsed = partnerIntakeSchema.safeParse(body);
+    const parsed = partnerIntakeSchema.safeParse(body);
 
-//     if (!parsed.success) {
-//       return NextResponse.json(
-//         {
-//           success: false,
-//           message: "Invalid partner submission.",
-//           errors: parsed.error.flatten(),
-//         },
-//         { status: 400 },
-//       );
-//     }
+    if (!parsed.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid partner submission.",
+          errors: parsed.error.flatten(),
+        },
+        { status: 400 },
+      );
+    }
 
-//     const payload = parsed.data;
+    const payload = parsed.data;
 
-//     const toEmail = process.env.CONTACT_TO_EMAIL;
-//     const fromEmail = process.env.CONTACT_FROM_EMAIL;
+    const toEmail = process.env.CONTACT_TO_EMAIL;
+    const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
-//     if (!toEmail || !fromEmail) {
-//       return NextResponse.json(
-//         { success: false, message: "Email configuration is missing." },
-//         { status: 500 },
-//       );
-//     }
+    if (!toEmail || !fromEmail) {
+      return NextResponse.json(
+        { success: false, message: "Email configuration is missing." },
+        { status: 500 },
+      );
+    }
 
-//     await resend.emails.send({
-//       from: fromEmail,
-//       to: toEmail,
-//       replyTo: payload.contact.email,
-//       subject: `New Partner Interest: ${payload.contact.organization}`,
-//       text: buildPartnerEmail(payload),
-//     });
-
-//     return NextResponse.json({ success: true });
-//   } catch (error) {
-//     console.error("Partner contact route error:", error);
-//     return NextResponse.json(
-//       { success: false, message: "Failed to send partner submission." },
-//       { status: 500 },
-//     );
-//   }
-// }
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Partner contact route error:", error);
+    return NextResponse.json(
+      { success: false, message: "Failed to send partner submission." },
+      { status: 500 },
+    );
+  }
+}
