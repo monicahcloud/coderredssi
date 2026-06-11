@@ -2,7 +2,7 @@ export const trackEvent = (
   eventName: string,
   parameters?: Record<string, string | number>,
 ) => {
-  if (typeof window === "undefined") return;
+  console.log("GA EVENT", eventName, parameters);
 
   // @ts-ignore
   window.gtag?.("event", eventName, parameters);
