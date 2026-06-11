@@ -1,76 +1,79 @@
 "use client";
 
 import Link from "next/link";
-// import MegaMenu from "@/components/MegaMenu";
-import design from "../../../app/assets/images/design2.png";
-import develop from "../../../app/assets/images/develop2.png";
-import marketing from "../../../app/assets/images/develop2.png";
+import { ChevronDown } from "lucide-react";
 
 export const links = [
-  { name: "About", href: "/about" },
+  {
+    name: "About",
+    href: "/about",
+  },
   {
     name: "Services",
     href: "/services",
     hasSubMenu: true,
     subMenu: [
       {
-        name: "Design",
-        href: "/services/design",
-        description: [
-          "AI System Integration & Automation",
-          "UI/UX Architecture",
-          "Web & Mobile Design",
-          "Landing Page Design",
-          "Brand Identity",
-        ],
-        icon: design,
+        name: "Physical Assessments",
+        href: "/services/assessments",
       },
       {
-        name: "Development",
-        href: "/services/development",
-        description: [
-          "Custom Web Applications",
-          "Software Engineering",
-          "CMS Architecture",
-          "MVP Rapid Prototyping",
-          "Webflow Solutions",
-        ],
-        icon: develop,
+        name: "Education",
+        href: "/services/education",
       },
       {
-        name: "Marketing/UX",
-        href: "/services/marketing",
-        description: [
-          "Growth Marketing Strategy",
-          "SEO & Conversion (CRO)",
-          "Authority Pitch Decks",
-          "Content Architecture",
-        ],
-        icon: marketing,
+        name: "Equipment",
+        href: "/services/equipment",
+      },
+      {
+        name: "Reassessment",
+        href: "/services/reassessment",
       },
     ],
   },
-  { name: "Contact", href: "/contact" },
+  {
+    name: "For Schools",
+    href: "/schools",
+  },
+  {
+    name: "Partnerships",
+    href: "/partnerships",
+  },
+  {
+    name: "Donate",
+    href: "/donate",
+  },
 ];
 
 function Links() {
   return (
-    <nav className="hidden lg:flex items-center gap-10">
+    <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
       {links.map((link) =>
         link.hasSubMenu ? (
-          <div key={link.name} className="relative group">
-            {/* <MegaMenu title={link.name} subMenu={link.subMenu} /> */}
-            {/* Underline decorative element for active/hover state */}
-            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-600 to-cyan-500 transition-all duration-300 group-hover:w-full" />
+          <div key={link.name} className="group relative">
+            <button className="flex items-center gap-1 text-xs font-bold uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:text-white">
+              {link.name}
+              <ChevronDown className="h-4 w-4" />
+            </button>
+
+            <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 translate-y-2 rounded-2xl border border-white/10 bg-black/95 p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              {link.subMenu?.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-zinc-300 transition hover:bg-red-600 hover:text-white">
+                  {item.name}
+                </Link>
+              ))}
+            </div>
           </div>
         ) : (
           <Link
             key={link.name}
             href={link.href}
-            className="relative group text-sm font-bold uppercase tracking-[0.2em] text-slate-600 hover:text-slate-900 transition-colors">
+            className="group relative text-xs font-bold uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:text-white">
             {link.name}
-            {/* Animated Underline */}
-            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-600 to-cyan-500 transition-all duration-300 group-hover:w-full" />
+            <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-red-600 transition-all duration-300 group-hover:w-full" />
           </Link>
         ),
       )}

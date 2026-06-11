@@ -288,7 +288,7 @@ export default function StatsPage() {
         </motion.div>
       </div>
       <div className="mt-10 flex justify-center">
-        <PartnerCTA className=" max-w-md" />
+        <PartnerCTA location="stats" className=" max-w-md" />
       </div>
     </section>
   );

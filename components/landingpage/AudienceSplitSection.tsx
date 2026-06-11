@@ -21,7 +21,7 @@ const audienceCards = [
       "Ongoing improvement instead of one-time fixes",
     ],
     icon: School,
-    cta: <SchoolCTA className="w-full sm:w-auto" />,
+    cta: <SchoolCTA location="audience" className="w-full sm:w-auto" />,
   },
   {
     id: "partners",
@@ -37,7 +37,7 @@ const audienceCards = [
       "Measurable and scalable community impact",
     ],
     icon: Handshake,
-    cta: <PartnerCTA className="w-full sm:w-auto" />,
+    cta: <PartnerCTA location="audience" className="w-full sm:w-auto" />,
   },
 ];
 

@@ -1,13 +1,15 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Montserrat, Inter, Roboto_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
+import NavBar from "@/components/navbar/NavBar";
+import Footer from "@/components/footer/Footer";
 import { Toaster } from "@/components/ui/sonner";
-// import { TooltipProvider } from "@/components/ui/tooltip";
-// import QueryProvider from "@/providers/query-provider";
+import { Suspense } from "react";
 
-// Brand fonts per guidelines: Montserrat (headlines), Inter (body), Roboto Mono (optional metrics) :contentReference[oaicite:1]{index=1}
 const fontHeading = Montserrat({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -30,8 +32,6 @@ export const metadata: Metadata = {
   title: "Code Red — Safer Schools Initiative",
   description:
     "Proactive threat prevention, preparedness, and collaboration for K–12 school safety.",
-  // Optional extras you can keep or remove:
-  // icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({
@@ -43,16 +43,21 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${fontHeading.variable} ${fontBody.variable} ${fontMono.variable}`}>
-      <body className=" antialiased">
-        {/* <QueryProvider>
-          <TooltipProvider> */}
+      <body className="bg-black antialiased">
+        <Suspense fallback={null}>
+          <NavBar />
+        </Suspense>
+
         {children}
 
-        {/* Global UI */}
-
+        <Footer />
         <Toaster />
-        {/* </TooltipProvider>
-        </QueryProvider> */}
+
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
+
+        <Analytics />
       </body>
     </html>
   );

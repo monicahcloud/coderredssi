@@ -291,7 +291,7 @@ export default function ImpactFramework() {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <SchoolCTA className="w-full max-w-md" />
+          <SchoolCTA location="impact" className="w-full max-w-md" />
         </div>
       </div>
     </section>

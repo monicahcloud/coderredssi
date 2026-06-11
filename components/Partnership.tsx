@@ -265,7 +265,7 @@ export default function FoundingAlliance() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <PartnerCTA />
+              <PartnerCTA location="partnership" />
             </div>
           </div>
         </div>
