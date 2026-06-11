@@ -4,6 +4,7 @@ import { Montserrat, Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 // import { TooltipProvider } from "@/components/ui/tooltip";
 // import QueryProvider from "@/providers/query-provider";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
         {/* Global UI */}
 
         <Toaster />
+        <Analytics />
         {/* </TooltipProvider>
         </QueryProvider> */}
       </body>
