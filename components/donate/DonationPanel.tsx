@@ -225,7 +225,7 @@ export default function DonationPanel() {
                       className={`rounded-full px-4 py-2 text-sm font-bold transition ${
                         selectedAmount === "custom"
                           ? "bg-red-700 text-white"
-                          : "border border-zinc-300 bg-red-700 text-zinc-700"
+                          : "border border-zinc-300 bg-red-700 text-white"
                       }`}>
                       {selectedAmount === "custom" ? "Selected" : "Use Custom"}
                     </button>
