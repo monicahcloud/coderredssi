@@ -1,34 +1,29 @@
-import {
-  ShieldCheck,
-  Handshake,
-  Building2,
-  ClipboardCheck,
-} from "lucide-react";
+import { Target, BarChart3, Users, Handshake } from "lucide-react";
 
 const features = [
   {
+    icon: Target,
+    title: "Proven Impact",
+    description:
+      "Real solutions that improve school safety, strengthen readiness, and help protect lives.",
+  },
+  {
     icon: Handshake,
-    title: "Partner-First Model",
+    title: "Trusted Partnerships",
     description:
-      "Schools receive one coordinated solution instead of navigating multiple vendors, competing recommendations, and disconnected systems.",
+      "We collaborate with mission-aligned partners to drive meaningful, measurable outcomes.",
   },
   {
-    icon: ShieldCheck,
-    title: "Practitioner Built",
+    icon: BarChart3,
+    title: "Data-Driven Approach",
     description:
-      "Developed by professionals with backgrounds in law enforcement, emergency management, and school operations.",
+      "Transparent reporting and insights demonstrate impact and guide smarter decisions.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Comprehensive Framework",
+    icon: Users,
+    title: "Vendor Neutral & Inclusive",
     description:
-      "Our approach covers assessment, education, equipment, implementation, and reassessment without gaps in the security lifecycle.",
-  },
-  {
-    icon: Building2,
-    title: "Scalable Impact",
-    description:
-      "Designed to support individual campuses, school districts, and statewide initiatives through a repeatable framework.",
+      "We vet solutions, not brands, ensuring fairness, choice, and the best outcomes for schools.",
   },
 ];
 

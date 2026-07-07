@@ -4,37 +4,37 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 export const links = [
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "Services",
-    href: "/services",
-    hasSubMenu: true,
-    subMenu: [
-      {
-        name: "Physical Assessments",
-        href: "/services/assessments",
-      },
-      {
-        name: "Education",
-        href: "/services/education",
-      },
-      {
-        name: "Equipment",
-        href: "/services/equipment",
-      },
-      {
-        name: "Reassessment",
-        href: "/services/reassessment",
-      },
-    ],
-  },
-  {
-    name: "For Schools",
-    href: "/schools",
-  },
+  // {
+  //   name: "About",
+  //   href: "/about",
+  // },
+  // {
+  //   name: "Services",
+  //   href: "/services",
+  //   hasSubMenu: true,
+  //   subMenu: [
+  //     {
+  //       name: "Physical Assessments",
+  //       href: "/services/assessments",
+  //     },
+  //     {
+  //       name: "Education",
+  //       href: "/services/education",
+  //     },
+  //     {
+  //       name: "Equipment",
+  //       href: "/services/equipment",
+  //     },
+  //     {
+  //       name: "Reassessment",
+  //       href: "/services/reassessment",
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: "For Schools",
+  //   href: "/schools",
+  // },
   {
     name: "Partnerships",
     href: "/partnerships",

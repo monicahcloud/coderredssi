@@ -32,7 +32,7 @@ const Footer = () => {
             <div className="flex items-center gap-3">
               <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-background/40">
-                501(c)(3) Nonprofit Entity
+                Pending 501(c)(3) Nonprofit Entity
               </span>
             </div>
           </div>

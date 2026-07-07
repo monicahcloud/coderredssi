@@ -10,39 +10,27 @@ import {
 const benefits = [
   {
     icon: Globe2,
-    title: "Website Recognition",
+    title: "Visibility",
     description:
-      "Partners can be recognized on the Code Red website with logo placement and partnership visibility.",
-  },
-  {
-    icon: Megaphone,
-    title: "Social Media Recognition",
-    description:
-      "Support can be highlighted through branded announcements, partner spotlights, and campaign updates.",
+      "Brand visibility with schools, districts, and education leaders nationwide.",
   },
   {
     icon: BarChart3,
-    title: "Impact Reporting",
+    title: "Reporting & Impact",
     description:
-      "Partners receive clear updates showing schools supported, students reached, and safety work completed.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Partnership Badge",
-    description:
-      "Partners may receive a digital recognition badge aligned with their investment or support level.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Mission Alignment",
-    description:
-      "Show visible commitment to safer schools, stronger communities, and proactive preparedness.",
+      "Access to KPI dashboards, quarterly impact reporting, and annual impact summaries.",
   },
   {
     icon: Handshake,
-    title: "Long-Term Collaboration",
+    title: "Engagement",
     description:
-      "Opportunities may include pilots, local initiatives, statewide programs, or strategic implementation support.",
+      "Opportunities to engage with schools, districts, and decision makers.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Recognition",
+    description:
+      "Recognition as a mission-aligned leader in school safety innovation.",
   },
 ];
 
