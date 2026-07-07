@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Mail, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -72,9 +72,11 @@ const Footer = () => {
                 info@coderedssi.org
               </a>
 
-              {/* <div className="flex items-center gap-3 text-sm font-bold hover:text-primary transition-colors">
-                <MapPin className="h-4 w-4 " /> Washington, D.C.
-              </div> */}
+              <div className="flex items-center gap-3 text-sm font-bold hover:text-primary transition-colors">
+                <MapPin className="h-4 w-4 " /> 15257 Amberly Dr Ste 537
+                <br />
+                Tampa, FL 33647
+              </div>
             </div>
           </div>
         </div>
