@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
+
 import {
   Shield,
   GraduationCap,
@@ -66,9 +66,6 @@ export default function DonationPanel() {
 
     return links[selectedAmount as keyof typeof links] || links.custom || "#";
   }, [frequency, selectedAmount]);
-
-  console.log("ENV 100:", process.env.NEXT_PUBLIC_STRIPE_100);
-  console.log("DONATE URL:", donateUrl);
 
   const selectedLabel =
     selectedAmount === "custom"

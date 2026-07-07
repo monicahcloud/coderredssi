@@ -5,7 +5,8 @@ import Link from "next/link";
 import { ArrowRight, HeartHandshake } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
-const ONE_TIME_DONATION_URL = "https://buy.stripe.com/REPLACE_ME";
+const ONE_TIME_DONATION_URL =
+  "https://donate.stripe.com/00w9AN3C94gE0XX8xzbbG04";
 
 export default function DonateHero() {
   return (
