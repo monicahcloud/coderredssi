@@ -47,7 +47,7 @@ function NavBar() {
               key={link.href}
               href={link.href}
               className="
-                text-md font-semibold uppercase tracking-wider text-white/80
+                text-lg font-semibold uppercase tracking-wider text-white/90
                 transition hover:text-red-700 hover:underline hover:underline-offset-4
               ">
               {link.label}

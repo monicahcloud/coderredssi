@@ -12,6 +12,7 @@ import {
   Target,
   Users,
 } from "lucide-react";
+import BoardMemberCard from "@/components/about/BoardMemberCard";
 
 const boardMembers = [
   {
@@ -27,7 +28,7 @@ const boardMembers = [
       "His career as a Procurement and Contracting Officer gives him a rare ability to connect real-world security needs with budgets, contracts, vendor evaluation, regulation, and long-term implementation.",
       "At Code Red, James focuses on developing practical, sustainable safety solutions that move schools beyond check-the-box compliance and toward executable plans designed to work under pressure.",
     ],
-    icon: ShieldCheck,
+    icon: "shield-check",
     highlights: [
       "United States Air Force Security Forces veteran",
       "Department of Defense procurement experience",
@@ -50,7 +51,7 @@ const boardMembers = [
       "During his final posting, he spent nine years as a Red Team member for the Pentagon Force Protection Agency, helping assess and strengthen protection for one of the world’s most strategically significant facilities.",
       "He has also supported organizations including the CIA, DIA, and United States Capitol Police in developing and strengthening Red Team programs. Through Code Red, he now applies that expertise to help schools identify vulnerabilities before they become emergencies.",
     ],
-    icon: Target,
+    icon: "target",
     highlights: [
       "Three decades of security experience",
       "Pentagon Force Protection Agency Red Team",
@@ -73,7 +74,7 @@ const boardMembers = [
       "In his federal government leadership role, he provides enterprise-level oversight, supports resource allocation, strengthens workflows, and translates organizational strategy into measurable action.",
       "His leadership foundation was shaped by 23 years of service in the United States Army. At Code Red, he helps schools build stronger systems, clearer communication, and accountable structures that make safety a sustainable organizational capability.",
     ],
-    icon: Users,
+    icon: "users",
     highlights: [
       "Leadership and organizational strategy",
       "23-year United States Army veteran",
@@ -83,7 +84,7 @@ const boardMembers = [
     quote:
       "Safety must become an organizational capability, not simply a written procedure.",
   },
-];
+] as const;
 
 const boardResponsibilities = [
   {
@@ -118,19 +119,16 @@ export default function BoardPage() {
             Leadership Commitment
           </p>
 
-          <blockquote className="mt-4 text-4xl font-black uppercase leading-[1.05] sm:text-5xl lg:text-6xl">
-            Every Decision We Make
-            <span className="block text-slate-950">
-              Is Measured By One Question.
-            </span>
+          <blockquote className="my-4 text-4xl font-black uppercase leading-[1.05] sm:text-5xl lg:text-6xl">
+            <h1 className="text-5xl text-center font-black uppercase  text-white">
+              Meet the Board
+            </h1>
           </blockquote>
 
-          <div className="mx-auto mt-6 max-w-6xl border-y border-white/20 py-6">
-            <p className="text-2xl font-bold leading-8 text-white">
-              <span className="text-slate-950">
-                Does this make schools safer
-              </span>{" "}
-              for students, educators, and the communities they serve?
+          <div className="mx-auto  max-w-6xl border-y border-white/20 py-3 ">
+            <p className=" text-xl font-black text-black uppercase text-center sm:text-3xl">
+              Proven Leaders.
+              <span className=" text-white"> One Shared Responsibility.</span>
             </p>
           </div>
         </div>
@@ -139,110 +137,14 @@ export default function BoardPage() {
       {/* Board profiles */}
       <section className="bg-white px-6 py-20 sm:px-8 lg:px-10 lg:py-10">
         <div className="mx-auto w-full">
-          <div className="mb-8 max-w-full">
-            <h1 className="text-5xl text-center font-black uppercase  text-red-700">
-              Meet the Board
-            </h1>
-
-            <p className="mt-5 text-2xl font-black uppercase text-center sm:text-5xl lg:text-4xl">
-              Proven Leaders.
-              <span className=" text-red-700"> One Shared Responsibility.</span>
-            </p>
-          </div>
-
-          <div className="space-y-12 lg:space-y-20">
-            {boardMembers.map((member, index) => {
-              const Icon = member.icon;
-              const isReversed = index % 2 !== 0;
-
-              return (
-                <article
-                  key={member.name}
-                  className="grid overflow-hidden border border-slate-200 bg-white shadow-xl lg:grid-cols-2">
-                  {/* Portrait */}
-                  <div
-                    className={`relative aspect-[4/5]" ${
-                      isReversed ? "lg:order-2" : ""
-                    }`}>
-                    <Image
-                      src={member.image}
-                      alt={`${member.name}, ${member.role}`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-contain"
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
-
-                    <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-10">
-                      <div className="flex items-end justify-between gap-6">
-                        <div>
-                          <p className="text-sm font-black uppercase tracking-[0.25em] text-red-500">
-                            {member.role}
-                          </p>
-
-                          <h3 className="mt-2 text-4xl font-black uppercase leading-none text-white sm:text-5xl">
-                            {member.name}
-                          </h3>
-                        </div>
-
-                        <span className="text-7xl font-black leading-none text-white/20 sm:text-8xl">
-                          {member.number}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Biography */}
-                  <div
-                    className={`flex flex-col justify-between p-7 sm:p-6 lg:p-6  ${
-                      isReversed ? "lg:order-1" : ""
-                    }`}>
-                    <div>
-                      <div className="flex items-center gap-4">
-                        <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-red-700 text-white">
-                          <Icon className="h-7 w-7" />
-                        </div>
-
-                        <p className="text-sm font-black uppercase tracking-[0.2em] text-red-700">
-                          {member.eyebrow}
-                        </p>
-                      </div>
-
-                      <p className="mt-8 text-2xl font-black leading-9 text-slate-950">
-                        {member.summary}
-                      </p>
-
-                      <div className="mt-8 space-y-5 text-base leading-7 text-slate-600">
-                        {member.bio.map((paragraph) => (
-                          <p key={paragraph}>{paragraph}</p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="mt-10">
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        {member.highlights.map((highlight) => (
-                          <div
-                            key={highlight}
-                            className="flex items-start gap-3 border border-slate-200 bg-slate-50 p-4">
-                            <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-red-700" />
-
-                            <p className="text-sm font-bold leading-6 text-slate-700">
-                              {highlight}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <blockquote className="mt-8 border-l-4 border-red-700 bg-slate-950 p-6 text-lg font-bold leading-8 text-white">
-                        “{member.quote}”
-                      </blockquote>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+          <div className="space-y-10 lg:space-y-16">
+            {boardMembers.map((member, index) => (
+              <BoardMemberCard
+                key={member.name}
+                member={member}
+                isReversed={index % 2 !== 0}
+              />
+            ))}
           </div>
         </div>
       </section>
