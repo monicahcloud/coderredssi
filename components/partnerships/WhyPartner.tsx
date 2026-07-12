@@ -56,14 +56,16 @@ export default function WhyPartner() {
             return (
               <div
                 key={feature.title}
-                className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600 shadow-lg">
-                  <Icon className="h-8 w-8 text-white" />
-                </div>
+                className="group rounded-none border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-red-600 shadow-lg">
+                    <Icon className="h-8 w-8 text-white" />
+                  </div>
 
-                <h3 className="mb-4 text-2xl font-black text-slate-900">
-                  {feature.title}
-                </h3>
+                  <h3 className="text-2xl font-black text-slate-900">
+                    {feature.title}
+                  </h3>
+                </div>
 
                 <p className="text-sm leading-7 text-slate-600">
                   {feature.description}
@@ -73,12 +75,12 @@ export default function WhyPartner() {
           })}
         </div>
 
-        <div className="mt-16 rounded-3xl bg-gradient-to-r from-red-700 to-red-600 p-8 text-center text-white shadow-xl sm:p-10">
+        <div className="mt-9 rounded-none bg-gradient-to-r from-red-700 to-red-600 p-8 text-center text-white shadow-xl sm:p-10">
           <h3 className="text-2xl font-black sm:text-3xl">
             A Coordinated, Partner-Driven Approach To School Protection
           </h3>
 
-          <p className="mx-auto mt-4 max-w-4xl text-base leading-8 text-red-50 sm:text-lg">
+          <p className="mx-auto mt-4 max-w4xl text-base leading-8 text-red-50 sm:text-lg">
             Code Red brings together schools, partners, technology providers,
             community leaders, and safety professionals under one coordinated
             framework designed to improve preparedness, reduce risk, and

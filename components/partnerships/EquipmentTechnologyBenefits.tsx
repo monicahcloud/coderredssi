@@ -1,29 +1,27 @@
 import { Map, FileText, Lightbulb, Sprout } from "lucide-react";
 
-const benefits = [
+const equipmentBenefits = [
   {
     icon: Map,
-    title: "National Brand Visibility",
+    title: "National Visibility",
     description:
-      "Position your brand within a national, standards-based school safety model and gain stronger visibility with schools, districts, and education stakeholders.",
+      "Position your brand in a standards-based school safety model.",
   },
   {
     icon: FileText,
-    title: "Inclusion in Recommendations & Proposals",
+    title: "Recommendation Inclusion",
     description:
-      "Increase visibility in recommendations and proposals where solutions align with assessment findings, school needs, and implementation priorities.",
+      "Be considered where solutions align with assessment findings and school needs.",
   },
   {
     icon: Lightbulb,
-    title: "Pilot & Early Implementation Opportunities",
-    description:
-      "Gain opportunities to support early pilots, implementation pathways, and measurable school safety initiatives.",
+    title: "Pilot Opportunities",
+    description: "Support early implementation and measurable initiatives.",
   },
   {
     icon: Sprout,
-    title: "Multi-State Growth Alignment",
-    description:
-      "Align with a school safety initiative designed for regional expansion and broader multi-state growth over time.",
+    title: "Growth Alignment",
+    description: "Align with a program built for regional expansion over time.",
   },
 ];
 
@@ -40,7 +38,7 @@ export default function EquipmentTechnologyBenefits() {
         </h2>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          {benefits.map((item) => {
+          {equipmentBenefits.map((item) => {
             const Icon = item.icon;
 
             return (

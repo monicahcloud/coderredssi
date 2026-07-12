@@ -3,10 +3,9 @@ import PartnershipOptions from "@/components/partnerships/PartnershipOptions";
 import SponsorBenefits from "@/components/partnerships/SponsorBenefits";
 import PartnershipCTA from "@/components/partnerships/PartnershipCTA";
 import WhyPartner from "@/components/partnerships/WhyPartner";
-import ImpactAreas from "@/components/partnerships/ImpactAreas";
 import PartnershipProcess from "@/components/partnerships/PartnershipProcess";
-import EquipmentTechnologyBenefits from "@/components/partnerships/EquipmentTechnologyBenefits";
-import VendorNeutrality from "@/components/partnerships/VendorNeutrality";
+import ImpactAreas from "@/components/partnerships/ImpactAreas";
+import ImpactCalculator from "@/components/partnerships/ImpactCalculator";
 
 export const metadata = {
   title: "Partnerships | Code Red Safer Schools Initiative",
@@ -21,18 +20,11 @@ export default function PartnershipsPage() {
         <div className="">
           <PartnershipHero />
         </div>
-
         <WhyPartner />
         <SponsorBenefits />
-        <EquipmentTechnologyBenefits />
-        <ImpactAreas />
-
-        <VendorNeutrality />
         <PartnershipOptions />
-
+        <ImpactCalculator />
         <PartnershipProcess />
-        <PartnershipCTA />
-        {/* <PartnershipFAQ /> */}
       </section>
     </main>
   );

@@ -25,7 +25,7 @@ function DonateCTA() {
 
 const links = [
   { href: "/", label: "Home" },
-  // { href: "/about", label: "About" },
+  { href: "/about", label: "About" },
   { href: "/partnerships", label: "Partnerships" },
   // { href: "/programs", label: "Programs" },
   // { href: "/training", label: "Training" },
@@ -41,7 +41,7 @@ function NavBar() {
         <Logo />
 
         {/* Navigation */}
-        <nav className="hidden xl:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -56,7 +56,7 @@ function NavBar() {
         </nav>
 
         {/* Right Side */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden sm:flex gap-3">
           {/* Only on very wide screens */}
           <div className="hidden 2xl:block">
             <SchoolCTA location="navbar" />

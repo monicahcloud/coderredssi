@@ -40,7 +40,7 @@ export function PartnerCTA({ className, location = "unknown" }: CTAProps) {
       return;
     }
 
-    router.push("/contact?type=partner");
+    router.push("/#contact");
   };
 
   return (

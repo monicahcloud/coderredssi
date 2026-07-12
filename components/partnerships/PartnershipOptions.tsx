@@ -76,15 +76,15 @@ export default function PartnershipOptions() {
   return (
     <section
       id="partnership-options"
-      className="bg-[#181818] px-4 py-16 text-white md:px-8 lg:px-14">
-      <div className="mx-auto max-w-[1400px]">
+      className="bg-[#181818] px-4 py-10 text-white md:px-8 lg:px-14">
+      <div className="mx-auto max-w-full">
         <div className="mb-6 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <h2 className="text-5xl font-black uppercase tracking-wide md:text-7xl">
+            <h2 className="text-4xl font-heading tracking-tight sm:text-5xl lg:text-6xl">
               Investment Levels
             </h2>
 
-            <div className="mt-3 flex flex-wrap gap-x-8 gap-y-2 text-2xl font-black uppercase md:text-3xl">
+            <div className="mt-3 flex flex-wrap gap-x-8 gap-y-2 text-2xl  uppercase md:text-3xl">
               <span className="text-red-600">Flexible Options.</span>
               <span className="text-white">Measureable Value.</span>
             </div>
@@ -93,9 +93,8 @@ export default function PartnershipOptions() {
           <Image
             src="/images/Code_Red_Approved_Logo_Designs.png"
             alt="Code Red Safer Schools Initiative"
-            width={380}
+            width={320}
             height={120}
-            className="h-auto w-[280px] object-contain lg:w-[380px]"
           />
         </div>
 
@@ -103,7 +102,7 @@ export default function PartnershipOptions() {
           <div className="min-w-[1000px]">
             <div className="grid grid-cols-[280px_repeat(4,1fr)] gap-3">
               <div className="flex min-h-[170px] items-center justify-center border border-zinc-500 bg-[#1b1b1b]">
-                <h3 className="text-3xl font-black uppercase">Benefits</h3>
+                <h3 className="text-3xl font-body uppercase">Benefits</h3>
               </div>
 
               {tiers.map((tier) => (
@@ -133,7 +132,9 @@ export default function PartnershipOptions() {
               {sections.map((section) => (
                 <div key={section.title}>
                   <div className="mb-3 border border-zinc-500 bg-[#1b1b1b] px-4 py-4">
-                    <h4 className="font-black text-red-600">{section.title}</h4>
+                    <h2 className="font-body  text-center font-bold text-xl text-red-600">
+                      {section.title}
+                    </h2>
                   </div>
 
                   <div className="space-y-3">
@@ -141,7 +142,7 @@ export default function PartnershipOptions() {
                       <div
                         key={row[0] as string}
                         className="grid grid-cols-[280px_repeat(4,1fr)] gap-3">
-                        <div className="flex min-h-[58px] items-center justify-center border border-zinc-500 bg-[#1b1b1b] px-4 text-center text-sm text-zinc-300">
+                        <div className="flex min-h-[58px] items-center justify-center border border-zinc-500 bg-[#1b1b1b] px-4 text-center text-md text-zinc-300">
                           {row[0]}
                         </div>
 
@@ -162,8 +163,8 @@ export default function PartnershipOptions() {
               ))}
             </div>
 
-            <p className="mt-5 text-center text-xs font-black uppercase text-white">
-              501(c)3 Pending
+            <p className="mt-5 text-center text-sm font-body font-bold uppercase text-white">
+              Pending 501(c)3
             </p>
           </div>
         </div>

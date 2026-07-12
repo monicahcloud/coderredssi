@@ -44,13 +44,13 @@ const steps = [
 export default function PartnershipProcess() {
   return (
     <section className="bg-zinc-100 px-6 py-24 text-slate-950 md:px-10 xl:px-16 2xl:px-24">
-      <div className="mx-auto w-full max-w-[1600px]">
-        <div className="mb-16 max-w-4xl">
+      <div className="mx-auto w-full max-w-full">
+        <div className="mb-10 max-w-4xl">
           <p className="mb-4 text-sm font-black uppercase tracking-[0.25em] text-red-600">
             Partnership Process
           </p>
 
-          <h2 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="text-4xl font-heading font-bold tracking-tight sm:text-5xl lg:text-6xl">
             From Interest to Implementation
           </h2>
 
@@ -68,16 +68,18 @@ export default function PartnershipProcess() {
             return (
               <div
                 key={item.step}
-                className="relative rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
+                className="relative border border-slate-200 bg-white p-7 shadow-sm">
                 <p className="text-6xl font-black text-red-100">{item.step}</p>
 
-                <div className="mt-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-600">
-                  <Icon className="h-7 w-7 text-white" />
-                </div>
+                <div className="mt-4 mb-6 flex items-center gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-red-600">
+                    <Icon className="h-7 w-7 text-white" />
+                  </div>
 
-                <h3 className="mt-6 text-2xl font-black text-slate-950">
-                  {item.title}
-                </h3>
+                  <h3 className="text-2xl font-black text-slate-950">
+                    {item.title}
+                  </h3>
+                </div>
 
                 <p className="mt-4 text-sm leading-7 text-slate-600">
                   {item.description}
@@ -87,7 +89,7 @@ export default function PartnershipProcess() {
           })}
         </div>
 
-        <div className="mt-12 rounded-[2rem] bg-black p-8 text-white sm:p-10">
+        <div className="mt-8  bg-black p-8 text-white sm:p-10">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.25em] text-red-500">

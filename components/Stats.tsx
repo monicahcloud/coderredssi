@@ -238,7 +238,7 @@ export default function StatsPage() {
               </div>
 
               <div className="flex h-full flex-col">
-                <p className="text-lg font-bold text-white">
+                <p className="text-lg font-bold text-white ">
                   Educational Impact
                 </p>
 

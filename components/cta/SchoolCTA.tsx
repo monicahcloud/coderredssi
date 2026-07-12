@@ -40,7 +40,7 @@ export function SchoolCTA({ className, location = "unknown" }: CTAProps) {
       return;
     }
 
-    router.push("/contact?type=school");
+    router.push("/#contact");
   };
 
   return (
