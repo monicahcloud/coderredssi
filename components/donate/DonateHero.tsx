@@ -22,8 +22,8 @@ export default function DonateHero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/35" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(220,38,38,0.35),transparent_35%)]" />
 
-      <div className="relative z-10 flex min-h-[calc(100vh-76px)] items-center px-5 py-24 sm:px-8 lg:px-14 xl:px-20 2xl:px-28">
-        <div className="max-w-4xl">
+      <div className="relative z-10 flex min-h-[calc(100vh-20px)] items-center px-5 py-1 sm:px-8 lg:px-14 xl:px-20 ">
+        <div className="max-w-full -mt-50">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-black/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-red-100 backdrop-blur">
             <HeartHandshake className="h-4 w-4" />
             Support Safer Schools
