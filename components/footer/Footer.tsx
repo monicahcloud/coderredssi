@@ -73,7 +73,7 @@ const Footer = () => {
               </span>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            {/* <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/#contact"
                 className="group inline-flex min-h-14 items-center justify-center gap-3 bg-red-700 px-6 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-red-800">
@@ -87,7 +87,7 @@ const Footer = () => {
                 Explore Our Framework
                 <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Information section */}
