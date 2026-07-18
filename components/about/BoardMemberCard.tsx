@@ -164,14 +164,13 @@ export default function BoardMemberCard({
       </article>
 
       {/* TABLET / DESKTOP PROFILE */}
-      {/* TABLET / DESKTOP PROFILE */}
       <article
-        className={`hidden h-[580px] overflow-hidden border border-slate-200 bg-white shadow-xl md:grid ${
+        className={`hidden overflow-hidden border border-slate-200 bg-white shadow-xl md:grid ${
           isReversed ? "lg:grid-cols-[62%_38%]" : "lg:grid-cols-[38%_62%]"
         }`}>
         {/* IMAGE SIDE */}
         <div
-          className={`relative h-full min-h-0 overflow-hidden bg-slate-950 ${
+          className={`relative min-h-[580px] overflow-hidden bg-slate-950 ${
             isReversed ? "lg:order-2" : ""
           }`}>
           <Image
@@ -205,7 +204,7 @@ export default function BoardMemberCard({
 
         {/* TEXT SIDE */}
         <div
-          className={`flex h-full min-h-0 flex-col overflow-hidden p-7 lg:p-8 ${
+          className={`flex flex-col p-7 lg:p-8 ${
             isReversed ? "lg:order-1" : ""
           }`}>
           <div>
@@ -223,16 +222,15 @@ export default function BoardMemberCard({
               {member.summary}
             </p>
 
-            <div className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
-              {member.bio.slice(0, 2).map((paragraph) => (
-                <p key={paragraph} className="line-clamp-3">
-                  {paragraph}
-                </p>
+            {/* Full biography */}
+            <div className="mt-5 space-y-4 text-sm leading-6 text-slate-600">
+              {member.bio.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </div>
 
-          <div className="mt-auto pt-6">
+          <div className="mt-7">
             <div className="grid gap-2 sm:grid-cols-2">
               {member.highlights.map((highlight) => (
                 <div

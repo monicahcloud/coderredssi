@@ -1,30 +1,26 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
-  CalendarDays,
-  Check,
   CircleDollarSign,
   GraduationCap,
   HeartHandshake,
   Info,
   ShieldCheck,
-  Sparkles,
   Users,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { trackEvent } from "@/lib/analytics";
 
 type Frequency = "one-time" | "monthly";
 type DonationAmount = 25 | 50 | 100 | 250 | "custom";
 
-type ImpactMetricId = "students" | "annual" | "investment" | "next-student";
-
 const COST_PER_CHILD = 40;
+const MIN_DONATION = 10;
+const MAX_DONATION = 10_000;
 
 const donationLinks = {
   "one-time": {
@@ -57,22 +53,218 @@ const monthlyAmounts = [
   { amount: 250, label: "$250/mo", name: "Guardian" },
 ] as const;
 
-const metricDescriptions: Record<ImpactMetricId, string> = {
-  students:
-    "The estimated number of children directly supported by the selected donation.",
-  annual:
-    "The estimated number of children supported over 12 months. Monthly donations are multiplied by 12.",
-  investment:
-    "The amount currently selected for this donation. Monthly donations show the annual commitment.",
-  "next-student":
-    "The progress your donation has made toward supporting one additional child.",
+type ImpactCardProps = {
+  label: string;
+  title: string;
+  value: string;
+  description: string;
+  icon: LucideIcon;
+  activeCount: number;
+  totalIcons?: number;
+  footLeft: string;
+  progress?: number;
+  visual?: "icons" | "gift-summary" | "next-child";
+  completedChildren?: number;
+  amountRemaining?: number;
+  frequency?: Frequency;
+  donationAmount?: number;
+  annualCommitment?: number;
 };
+
+function ImpactCard({
+  label,
+  title,
+  value,
+  description,
+  icon: Icon,
+  activeCount,
+  totalIcons = 40,
+  footLeft,
+  progress,
+  visual = "icons",
+  completedChildren = 0,
+  amountRemaining = 0,
+  frequency,
+  donationAmount = 0,
+  annualCommitment = 0,
+}: ImpactCardProps) {
+  const safeActiveCount = Math.min(
+    totalIcons,
+    Math.max(0, Math.round(activeCount)),
+  );
+
+  return (
+    <article className="relative isolate flex min-h-[540px] flex-col overflow-hidden rounded-[1.75rem] bg-[#111219] p-6 text-white shadow-xl sm:p-7">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-16 -top-20 -z-10 h-64 w-64 rounded-full bg-red-700/30 blur-3xl"
+      />
+
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-red-300">
+            {label}
+          </p>
+          <h3 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
+            {title}
+          </h3>
+        </div>
+
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-red-700">
+          <Icon className="h-6 w-6" strokeWidth={2} />
+        </div>
+      </div>
+
+      <p className="mt-5 text-4xl font-black leading-none tracking-tight sm:text-5xl">
+        {value}
+      </p>
+
+      <p className="mt-5 text-sm leading-6 text-white/75">{description}</p>
+
+      <div className="mt-auto pt-7">
+        {visual === "gift-summary" && frequency ? (
+          <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.06] p-5">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-white/55">
+              Gift details
+            </p>
+
+            <div className="mt-5 space-y-4">
+              <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-4">
+                <p className="text-sm font-bold text-white/55">Frequency</p>
+                <p className="text-xl font-black">
+                  {frequency === "monthly" ? "Monthly" : "One time"}
+                </p>
+              </div>
+
+              <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-4">
+                <p className="text-sm font-bold text-white/55">
+                  {frequency === "monthly" ? "Monthly amount" : "Gift amount"}
+                </p>
+                <p className="text-xl font-black">
+                  ${donationAmount.toLocaleString()}
+                </p>
+              </div>
+
+              {frequency === "monthly" && (
+                <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-4">
+                  <p className="text-sm font-bold text-white/55">
+                    Annual commitment
+                  </p>
+                  <p className="text-xl font-black text-red-400">
+                    ${annualCommitment.toLocaleString()}
+                  </p>
+                </div>
+              )}
+
+              <div className="flex items-end justify-between gap-4">
+                <p className="text-sm font-bold text-white/55">
+                  Estimated children impacted
+                </p>
+                <p className="text-xl font-black">
+                  {completedChildren.toLocaleString()}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 border-l-4 border-red-600 bg-black/20 p-4">
+              <p className="text-sm leading-6 text-white/65">
+                {frequency === "monthly"
+                  ? "Impact is calculated using the full 12-month commitment."
+                  : "This contribution will be processed as a single gift."}
+              </p>
+            </div>
+          </div>
+        ) : visual === "next-child" && typeof progress === "number" ? (
+          <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.06] p-5">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-white/55">
+              Progress toward the next child
+            </p>
+
+            <div className="mt-5 grid items-center gap-6 sm:grid-cols-[140px_1fr]">
+              <div
+                className="relative mx-auto flex h-32 w-32 items-center justify-center rounded-full"
+                style={{
+                  background: `conic-gradient(#dc2626 ${progress * 3.6}deg, rgba(255,255,255,0.1) 0deg)`,
+                }}>
+                <div className="flex h-[104px] w-[104px] flex-col items-center justify-center rounded-full bg-[#1b1c23]">
+                  <span className="text-3xl font-black">{progress}%</span>
+                  <span className="mt-1 text-[10px] font-bold uppercase tracking-wider text-white/50">
+                    of $40
+                  </span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="border-b border-white/10 pb-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-white/45">
+                    Already impacted
+                  </p>
+                  <p className="mt-1 text-2xl font-black">
+                    {completedChildren.toLocaleString()}{" "}
+                    {completedChildren === 1 ? "child" : "children"}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-white/45">
+                    Still needed
+                  </p>
+                  <p className="mt-1 text-2xl font-black text-red-400">
+                    ${amountRemaining.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 h-2.5 overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-red-600 transition-[width] duration-500"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+
+            <p className="mt-3 text-xs font-bold text-white/55">
+              ${amountRemaining.toLocaleString()} more to complete the next
+              estimated child-impact unit.
+            </p>
+          </div>
+        ) : (
+          <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.06] p-4">
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.14em] text-white/55">
+              Children impacted
+            </p>
+
+            <div className="grid grid-cols-8 gap-2">
+              {Array.from({ length: totalIcons }, (_, index) => (
+                <div
+                  key={index}
+                  className={`flex aspect-square items-center justify-center rounded-lg border transition-colors duration-300 ${
+                    index < safeActiveCount
+                      ? "border-red-500 bg-red-600 text-white shadow-[0_0_16px_rgba(220,38,38,0.25)]"
+                      : "border-white/15 text-white/25"
+                  }`}>
+                  <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 flex items-center justify-between gap-4 text-xs font-bold text-white/60">
+              <span>{footLeft}</span>
+              <span className="shrink-0">
+                {safeActiveCount} of {totalIcons}
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+    </article>
+  );
+}
 
 export default function DonationPanel() {
   const [frequency, setFrequency] = useState<Frequency>("one-time");
   const [selectedAmount, setSelectedAmount] = useState<DonationAmount>(100);
   const [customAmount, setCustomAmount] = useState(300);
-  const [activeMetric, setActiveMetric] = useState<ImpactMetricId>("students");
 
   const amounts = frequency === "monthly" ? monthlyAmounts : oneTimeAmounts;
 
@@ -82,68 +274,71 @@ export default function DonationPanel() {
   const annualDonationValue =
     frequency === "monthly" ? donationValue * 12 : donationValue;
 
-  const studentsSupported = Math.floor(donationValue / COST_PER_CHILD);
+  // Monthly selections show their full 12-month impact.
+  const impactDonationValue =
+    frequency === "monthly" ? annualDonationValue : donationValue;
 
-  const annualStudentsSupported = Math.floor(
-    annualDonationValue / COST_PER_CHILD,
+  const childrenImpacted = Math.floor(impactDonationValue / COST_PER_CHILD);
+
+  const amountAppliedToNextStudent = impactDonationValue % COST_PER_CHILD;
+
+  const nextStudentProgress = Math.round(
+    (amountAppliedToNextStudent / COST_PER_CHILD) * 100,
   );
-
-  const amountAppliedToNextStudent = donationValue % COST_PER_CHILD;
-
-  const nextStudentProgress =
-    amountAppliedToNextStudent === 0 && donationValue >= COST_PER_CHILD
-      ? 100
-      : Math.round((amountAppliedToNextStudent / COST_PER_CHILD) * 100);
 
   const amountNeededForNextStudent =
     amountAppliedToNextStudent === 0
-      ? 0
+      ? COST_PER_CHILD
       : COST_PER_CHILD - amountAppliedToNextStudent;
 
-  const impactMetrics = [
+  const impactMetrics: Array<ImpactCardProps & { id: string }> = [
     {
-      id: "students" as const,
-      title: "Children Supported",
-      value: studentsSupported.toLocaleString(),
-      subtitle:
-        studentsSupported === 1
-          ? "1 child reached"
-          : `${studentsSupported.toLocaleString()} children reached`,
+      id: "children",
+      label: frequency === "monthly" ? "Annual Reach" : "Direct Reach",
+      title: "Children Impacted",
+      value: childrenImpacted.toLocaleString(),
+      description:
+        frequency === "monthly"
+          ? `Estimated annual impact created by 12 monthly gifts of $${donationValue.toLocaleString()}.`
+          : "Estimated child impact created by the selected one-time donation.",
       icon: Users,
+      activeCount: childrenImpacted,
+      footLeft: "1 icon represents 1 child impacted",
     },
     {
-      id: "annual" as const,
-      title:
+      id: "gift-summary",
+      label: "Your Contribution",
+      title: "Gift Summary",
+      value:
         frequency === "monthly"
-          ? "Annual Child Impact"
-          : "Projected Child Impact",
-      value: annualStudentsSupported.toLocaleString(),
-      subtitle:
+          ? `$${donationValue.toLocaleString()}/mo`
+          : `$${donationValue.toLocaleString()}`,
+      description:
         frequency === "monthly"
-          ? "Based on 12 monthly donations"
-          : "Based on this donation",
-      icon: CalendarDays,
-    },
-    {
-      id: "investment" as const,
-      title:
-        frequency === "monthly" ? "Annual Commitment" : "Selected Investment",
-      value: `$${annualDonationValue.toLocaleString()}`,
-      subtitle:
-        frequency === "monthly"
-          ? `$${donationValue.toLocaleString()} per month`
-          : "One-time contribution",
+          ? `A $${donationValue.toLocaleString()} monthly gift creates a $${annualDonationValue.toLocaleString()} annual commitment.`
+          : "A clear summary of your selected one-time contribution and its estimated impact.",
       icon: CircleDollarSign,
+      activeCount: 0,
+      footLeft: "",
+      visual: "gift-summary" as const,
+      frequency,
+      donationAmount: donationValue,
+      annualCommitment: annualDonationValue,
+      completedChildren: childrenImpacted,
     },
     {
-      id: "next-student" as const,
+      id: "next-child",
+      label: "Next Impact Unit",
       title: "Next Child Progress",
       value: `${nextStudentProgress}%`,
-      subtitle:
-        amountNeededForNextStudent === 0
-          ? "A complete $40 impact unit"
-          : `$${amountNeededForNextStudent} needed for the next child`,
+      description: `${childrenImpacted.toLocaleString()} ${childrenImpacted === 1 ? "child has" : "children have"} already been impacted. The remaining amount is progress toward the next child.`,
       icon: GraduationCap,
+      activeCount: Math.round((nextStudentProgress / 100) * 40),
+      footLeft: `${childrenImpacted.toLocaleString()} already impacted`,
+      progress: nextStudentProgress,
+      visual: "next-child" as const,
+      completedChildren: childrenImpacted,
+      amountRemaining: amountNeededForNextStudent,
     },
   ];
 
@@ -174,7 +369,7 @@ export default function DonationPanel() {
   };
 
   const updateCustomAmount = (amount: number) => {
-    const safeAmount = Math.min(10000, Math.max(10, amount));
+    const safeAmount = Math.min(MAX_DONATION, Math.max(MIN_DONATION, amount));
 
     setCustomAmount(safeAmount);
     setSelectedAmount("custom");
@@ -192,20 +387,22 @@ export default function DonationPanel() {
                   Your Gift. Real Change.
                 </p>
 
-                <h2 className="mt-4 text-4xl font-black leading-tight text-slate-950 lg:text-5xl">
-                  See the Impact of
-                  <span className="block text-red-700">Your Support</span>
+                <h2 className="mt-4 flex flex-wrap gap-x-2 text-4xl font-black leading-tight text-slate-950 lg:text-5xl">
+                  <span>See the Impact of</span>
+                  <span className="text-red-700">Your Support</span>
                 </h2>
 
-                <p className="mt-5 text-base leading-7 text-zinc-600 lg:text-lg">
+                <p className="mt-2 text-base leading-7 text-zinc-600 lg:text-lg">
                   The impact dashboard updates automatically as you select a
                   donation amount.
                 </p>
               </div>
 
-              <div className="mt-9 flex flex-wrap items-end gap-2">
+              <div className="mt-6 flex flex-wrap items-end gap-2">
                 <p className="text-2xl font-black text-slate-950 lg:text-3xl">
-                  Your Impact at{" "}
+                  {frequency === "monthly"
+                    ? "Your Annual Impact at "
+                    : "Your Impact at "}
                   <span className="text-red-700">
                     ${donationValue.toLocaleString()}
                     {frequency === "monthly" && (
@@ -215,87 +412,31 @@ export default function DonationPanel() {
                 </p>
               </div>
 
-              <div className="mt-7 grid gap-4 sm:grid-cols-2">
-                {impactMetrics.map((metric) => {
-                  const Icon = metric.icon;
-                  const isActive = activeMetric === metric.id;
-
-                  return (
-                    <button
-                      key={metric.id}
-                      type="button"
-                      onClick={() => setActiveMetric(metric.id)}
-                      aria-pressed={isActive}
-                      className="group text-left">
-                      <Card
-                        className={`h-full rounded-none border transition duration-300 ${
-                          isActive
-                            ? "border-red-600 bg-white shadow-xl ring-2 ring-red-600/10"
-                            : "border-zinc-200 bg-white shadow-sm hover:-translate-y-1 hover:border-red-300 hover:shadow-lg"
-                        }`}>
-                        <CardContent className="p-6">
-                          <div className="flex items-start justify-between gap-4">
-                            <div
-                              className={`flex h-14 w-14 shrink-0 items-center justify-center  transition ${
-                                isActive
-                                  ? "bg-red-700 text-white"
-                                  : "bg-red-50 text-red-700 group-hover:bg-red-700 group-hover:text-white"
-                              }`}>
-                              <Icon className="h-7 w-7" />
-                            </div>
-
-                            {isActive && (
-                              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-red-700 text-white">
-                                <Check className="h-4 w-4" />
-                              </div>
-                            )}
-                          </div>
-
-                          <p className="mt-5 text-sm font-bold text-zinc-600">
-                            {metric.title}
-                          </p>
-
-                          <p className="mt-1 text-4xl font-black tracking-tight text-slate-950">
-                            {metric.value}
-                          </p>
-
-                          <p className="mt-3 text-sm leading-6 text-zinc-500">
-                            {metric.subtitle}
-                          </p>
-
-                          {metric.id === "next-student" && (
-                            <Progress
-                              value={nextStudentProgress}
-                              className="mt-5 h-2.5 bg-zinc-200 [&>div]:bg-red-700"
-                            />
-                          )}
-                        </CardContent>
-                      </Card>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-5 border border-red-100 bg-red-50/70 p-5">
-                <div className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-700 text-white">
-                    <Sparkles className="h-5 w-5" />
+              <div className="mt-7 grid gap-5 sm:grid-cols-2">
+                {impactMetrics.map((metric) => (
+                  <div
+                    key={metric.id}
+                    className={
+                      metric.id === "next-child" ? "sm:col-span-2" : undefined
+                    }>
+                    <ImpactCard
+                      label={metric.label}
+                      title={metric.title}
+                      value={metric.value}
+                      description={metric.description}
+                      icon={metric.icon}
+                      activeCount={metric.activeCount}
+                      footLeft={metric.footLeft}
+                      progress={metric.progress}
+                      visual={metric.visual}
+                      completedChildren={metric.completedChildren}
+                      amountRemaining={metric.amountRemaining}
+                      frequency={metric.frequency}
+                      donationAmount={metric.donationAmount}
+                      annualCommitment={metric.annualCommitment}
+                    />
                   </div>
-
-                  <div>
-                    <p className="font-black text-slate-950">
-                      {
-                        impactMetrics.find(
-                          (metric) => metric.id === activeMetric,
-                        )?.title
-                      }
-                    </p>
-
-                    <p className="mt-1 text-sm leading-6 text-zinc-600">
-                      {metricDescriptions[activeMetric]}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
               <div className="mt-5  border border-zinc-200 bg-white p-5">
@@ -387,35 +528,33 @@ export default function DonationPanel() {
                   );
                 })}
 
-                <div
-                  className={`col-span-2 border p-6 transition ${
-                    selectedAmount === "custom"
-                      ? "border-red-700 bg-red-50/40"
-                      : "border-zinc-300 bg-white"
-                  }`}>
-                  <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="col-span-2 border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
+                  <div className="border border-red-200 bg-white p-6">
                     <div>
                       <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                        Custom Donation
+                        Selected donation amount
                       </p>
 
-                      <h3 className="mt-1 text-4xl font-black text-red-700">
-                        ${customAmount.toLocaleString()}
+                      <h3 className="mt-2 text-5xl font-black tracking-tight text-red-700">
+                        ${donationValue.toLocaleString()}
+                        {frequency === "monthly" && (
+                          <span className="ml-1 text-lg text-zinc-500">
+                            /month
+                          </span>
+                        )}
                       </h3>
                     </div>
 
-                    <Button
-                      type="button"
-                      onClick={() => setSelectedAmount("custom")}
-                      className="rounded-full bg-red-700 px-5 font-bold text-white hover:bg-red-800">
-                      {selectedAmount === "custom" ? "Selected" : "Use Custom"}
-                    </Button>
+                    <div className="mt-4 flex justify-between text-xs font-bold text-zinc-500">
+                      <span>$10 minimum</span>
+                      <span>$10,000 maximum</span>
+                    </div>
                   </div>
 
                   <div className="mt-5 flex items-center justify-between">
                     <button
                       type="button"
-                      onClick={() => updateCustomAmount(customAmount - 10)}
+                      onClick={() => updateCustomAmount(donationValue - 10)}
                       aria-label="Decrease custom donation"
                       className="flex h-10 w-10 items-center justify-center rounded-full bg-red-700 text-2xl font-bold text-white transition hover:bg-red-800">
                       −
@@ -427,24 +566,19 @@ export default function DonationPanel() {
 
                     <button
                       type="button"
-                      onClick={() => updateCustomAmount(customAmount + 10)}
+                      onClick={() => updateCustomAmount(donationValue + 10)}
                       aria-label="Increase custom donation"
                       className="flex h-10 w-10 items-center justify-center rounded-full bg-red-700 text-2xl font-bold text-white transition hover:bg-red-800">
                       +
                     </button>
                   </div>
 
-                  <div className="mt-5 flex justify-between text-xs font-semibold text-zinc-500">
-                    <span>$10</span>
-                    <span>$10,000</span>
-                  </div>
-
                   <input
                     type="range"
-                    min={10}
-                    max={10000}
+                    min={MIN_DONATION}
+                    max={MAX_DONATION}
                     step={10}
-                    value={customAmount}
+                    value={donationValue}
                     aria-label="Custom donation amount"
                     onChange={(event) =>
                       updateCustomAmount(Number(event.target.value))
@@ -477,6 +611,44 @@ export default function DonationPanel() {
                       [&::-moz-range-thumb]:bg-red-700
                     "
                   />
+
+                  <p className="mt-4 text-center text-xs font-semibold leading-5 text-zinc-500">
+                    Move the slider to choose a custom donation amount.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-7 space-y-4">
+                <div className="border border-red-200 bg-red-50 p-5">
+                  <p className="font-black text-slate-950">
+                    Donating to a specific community?
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-600">
+                    Please contact our team before donating if you would like
+                    your contribution allocated to a specific community. We will
+                    help coordinate the designation and allocation.
+                  </p>
+                  <a
+                    href="/contact"
+                    className="mt-3 inline-flex font-black text-red-700 underline decoration-2 underline-offset-4 hover:text-red-800">
+                    Contact our team
+                  </a>
+                </div>
+
+                <div className="border border-zinc-300 bg-zinc-50 p-5">
+                  <p className="font-black text-slate-950">
+                    Planning to donate more than $10,000?
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-600">
+                    Please contact us directly so we can assist with payment
+                    processing, contribution allocation, and receipt
+                    requirements for your major gift.
+                  </p>
+                  <a
+                    href="/contact"
+                    className="mt-3 inline-flex font-black text-red-700 underline decoration-2 underline-offset-4 hover:text-red-800">
+                    Contact us about a major gift
+                  </a>
                 </div>
               </div>
 
@@ -489,7 +661,9 @@ export default function DonationPanel() {
                     location: "donation_panel",
                     frequency,
                     amount: donationValue,
-                    estimatedChildren: studentsSupported,
+                    estimatedChildren: childrenImpacted,
+                    impactPeriod:
+                      frequency === "monthly" ? "annual" : "one-time",
                     costPerChild: COST_PER_CHILD,
                   })
                 }
