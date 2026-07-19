@@ -1,10 +1,8 @@
 import PartnershipHero from "@/components/partnerships/PartnershipHero";
 import PartnershipOptions from "@/components/partnerships/PartnershipOptions";
 import SponsorBenefits from "@/components/partnerships/SponsorBenefits";
-import PartnershipCTA from "@/components/partnerships/PartnershipCTA";
 import WhyPartner from "@/components/partnerships/WhyPartner";
 import PartnershipProcess from "@/components/partnerships/PartnershipProcess";
-import ImpactAreas from "@/components/partnerships/ImpactAreas";
 import ImpactCalculator from "@/components/partnerships/ImpactCalculator";
 
 export const metadata = {

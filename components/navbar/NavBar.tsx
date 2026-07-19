@@ -27,10 +27,8 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/partnerships", label: "Partnerships" },
-  // { href: "/programs", label: "Programs" },
-  // { href: "/training", label: "Training" },
-  // { href: "/resources", label: "Resources" },
-  // { href: "/contact", label: "Contact" },
+  // { href: "/schools", label: "Schools/Districts" },
+  // { href: "/about/board", label: "Meet The Board" },
 ];
 
 function NavBar() {

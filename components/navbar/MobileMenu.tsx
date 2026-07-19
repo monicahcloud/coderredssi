@@ -15,7 +15,7 @@ import { PartnerCTA } from "../cta/PartnerCTA";
 
 const mobileLinks = [
   { name: "About", href: "/about" },
-  // { name: "For Schools", href: "/schools" },
+  { name: "For Schools", href: "/schools" },
   { name: "Partnerships", href: "/partnerships" },
   { name: "Donate", href: "/donate" },
 ];
