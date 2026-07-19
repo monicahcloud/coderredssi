@@ -40,7 +40,7 @@ export default function SchoolFinancialModel() {
             <p className="text-sm font-black uppercase tracking-[0.26em] text-red-700">
               Designed to remove barriers
             </p>
-            <h2 className="mt-5 text-5xl font-black uppercase leading-[0.9] tracking-tight sm:text-6xl lg:text-6xl">
+            <h2 className="mt-5 text-4xl font-black uppercase leading-[0.9] tracking-tight  lg:text-6xl">
               Start Without the
               <span className="mt-2 block text-red-700">
                 Upfront Equipment Purchase.

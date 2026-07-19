@@ -91,10 +91,10 @@ export default function SchoolGap() {
             <h2 className="mt-3 max-w-4xl text-center text-5xl font-black leading-[0.9] tracking-tight text-slate-950 sm:text-6xl xl:text-6xl">
               <span className="text-red-700">“</span>The gap is not awareness.
               <span className="mt-3 block text-red-700">
-                It is coordination.
+                It is coordination.<span className="text-red-700">“</span>
               </span>
             </h2>
-            <p className="mt-5 max-w-lg text-center text-lg font-semibold leading-6 text-slate-600">
+            <p className="mt-5 max-w-lg items-center justify-center mx-auto text-center text-lg font-semibold leading-6 text-slate-600">
               Schools understand the risk. What they often lack is one framework
               connecting assessment, training, technology, implementation, and
               long-term support.
@@ -102,7 +102,7 @@ export default function SchoolGap() {
           </div>
 
           {/* Exactly four cards in one wide-screen row, with staggered offsets. */}
-          <div className="grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-4 -mt-10">
+          <div className="grid min-w-0 gap-3  md:grid-cols-2 xl:grid-cols-4 ">
             {gapStories.map((story, index) => (
               <article
                 key={story.title}

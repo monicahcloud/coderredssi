@@ -7,8 +7,8 @@ export default function SchoolProcess() {
     <section className="relative overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
       {/* Folded corner and side rail inspired by the reference slide */}
       <div className="absolute left-0 top-0 h-full w-4 bg-red-700 sm:w-8" />
-      <div className="absolute right-0 top-0 h-64 w-64 bg-red-700 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
-      <div className="absolute right-16 top-0 h-28 w-28 bg-black/15 blur-xl [clip-path:polygon(100%_0,100%_100%,0_0)]" />
+      <div className="absolute -right-10 top-0 h-64 w-64 bg-red-700 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
+      <div className="absolute right-10 top-0 h-28 w-28 bg-black/15 blur-xl [clip-path:polygon(100%_0,100%_100%,0_0)]" />
 
       <div className="relative mx-auto max-w-[1500px]">
         <div className="max-w-5xl">
@@ -35,8 +35,7 @@ export default function SchoolProcess() {
             return (
               <div
                 key={step.number}
-                className="group/step relative flex flex-col items-center"
-              >
+                className="group/step relative flex flex-col items-center">
                 <span className="mb-5 text-4xl font-black text-slate-950 transition-colors duration-300 group-hover/step:text-red-700">
                   {Number(step.number)}
                 </span>
@@ -51,8 +50,7 @@ export default function SchoolProcess() {
                   <div
                     className={`relative z-10 flex h-full w-full items-center justify-center rounded-full p-5 text-center shadow-lg transition-colors duration-500 ${
                       isDark ? "bg-slate-950" : "bg-red-700"
-                    } ${isDark ? "group-hover/step:bg-red-700" : "group-hover/step:bg-slate-950"}`}
-                  >
+                    } ${isDark ? "group-hover/step:bg-red-700" : "group-hover/step:bg-slate-950"}`}>
                     <h3 className="text-2xl font-black leading-tight text-white">
                       {step.title}
                     </h3>
@@ -82,8 +80,7 @@ export default function SchoolProcess() {
           {schoolProcess.map((step, index) => (
             <div
               key={step.number}
-              className="group/mobile flex flex-col items-center"
-            >
+              className="group/mobile flex flex-col items-center">
               <div className="grid w-full max-w-2xl grid-cols-[72px_1fr] items-center gap-5 border border-slate-200 bg-white p-5 shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-lg">
                 <div className="relative flex h-16 w-16 items-center justify-center">
                   <div className="absolute inset-0 rounded-full border-2 border-red-700 transition-transform duration-700 motion-reduce:transform-none group-hover/mobile:rotate-[360deg]">
