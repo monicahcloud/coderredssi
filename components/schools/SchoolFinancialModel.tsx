@@ -88,7 +88,7 @@ export default function SchoolFinancialModel() {
                 <article
                   key={benefit.title}
                   className="group flex min-h-[300px] flex-col bg-white p-7 transition hover:bg-red-50 sm:p-8">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 mt-7">
                     <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-red-700 text-white transition group-hover:bg-slate-950">
                       <Icon className="h-7 w-7" />
                     </div>
@@ -97,12 +97,12 @@ export default function SchoolFinancialModel() {
                       {benefit.title}
                     </h3>
 
-                    <span className="shrink-0 text-4xl font-black text-slate-100">
+                    {/* <span className="shrink-0 text-4xl font-black text-slate-100">
                       0{index + 1}
-                    </span>
+                    </span> */}
                   </div>
 
-                  <p className="mt-4 leading-7 text-slate-600">
+                  <p className="mt-8 leading-7 text-slate-600">
                     {benefit.description}
                   </p>
                 </article>
