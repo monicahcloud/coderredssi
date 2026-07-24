@@ -28,7 +28,7 @@ const links = [
   { href: "/about", label: "About" },
   { href: "/partnerships", label: "Partnerships" },
   // { href: "/schools", label: "Schools/Districts" },
-  // { href: "/about/board", label: "Meet The Board" },
+  { href: "/about/board", label: "Meet The Board" },
 ];
 
 function NavBar() {

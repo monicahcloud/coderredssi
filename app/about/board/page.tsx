@@ -1,6 +1,5 @@
 // app/about/board/page.tsx
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -8,9 +7,6 @@ import {
   CheckCircle2,
   Landmark,
   Network,
-  ShieldCheck,
-  Target,
-  Users,
 } from "lucide-react";
 import BoardMemberCard from "@/components/about/BoardMemberCard";
 
@@ -19,7 +15,7 @@ const boardMembers = [
     number: "01",
     name: "James Hicks",
     role: "Chairman of the Board",
-    image: "/images/board/james-hicks.jpg",
+    image: "/images/james.png",
     eyebrow: "Security, Procurement & Strategy",
     summary:
       "James brings combat-tested security experience and more than a decade of procurement and contracting leadership to Code Red.",
@@ -42,7 +38,7 @@ const boardMembers = [
     number: "02",
     name: "Cory Hebb",
     role: "Vice Chairman of the Board",
-    image: "/images/board/cory-hebb.jpg",
+    image: "/images/coryhebb.png",
     eyebrow: "Red Team Operations & Threat Assessment",
     summary:
       "Cory brings three decades of security experience, including advanced Red Team operations supporting national security organizations.",
