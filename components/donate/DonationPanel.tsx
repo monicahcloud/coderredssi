@@ -381,7 +381,7 @@ export default function DonationPanel() {
         <div className="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white shadow-2xl">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
             {/* Dynamic impact dashboard */}
-            <div className="bg-zinc-50 p-6 sm:p-8 lg:p-12">
+            <div className="order-2 bg-zinc-50 p-6 sm:p-8 lg:order-1 lg:p-12">
               <div className="max-w-5xl">
                 <p className="text-sm font-black uppercase tracking-[0.25em] text-red-600">
                   Your Gift. Real Change.
@@ -470,7 +470,7 @@ export default function DonationPanel() {
             </div>
 
             {/* Donation controls */}
-            <div className="bg-white p-6 sm:p-8 lg:p-12">
+            <div className="order-1 bg-white p-6 sm:p-8 lg:order-2 lg:p-12">
               <p className="mb-8 text-sm font-black uppercase tracking-[0.25em] text-red-600">
                 Make A Donation
               </p>

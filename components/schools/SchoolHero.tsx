@@ -6,12 +6,12 @@ import { ArrowRight, Download, School } from "lucide-react";
 
 import { trackEvent } from "@/lib/analytics";
 
-const schoolAudiences = [
-  "District Leaders",
-  "School Administrators",
-  "Safety Teams",
-  "Educators & Staff",
-] as const;
+// const schoolAudiences = [
+//   "District Leaders",
+//   "School Administrators",
+//   "Safety Teams",
+//   "Educators & Staff",
+// ] as const;
 
 export default function SchoolHero() {
   return (
@@ -83,7 +83,7 @@ export default function SchoolHero() {
             </a>
           </div>
 
-          <div className="mt-8 border-white/30 bg-black">
+          {/* <div className="mt-8 border-white/30 bg-black">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {schoolAudiences.map((audience) => (
                 <div
@@ -95,7 +95,7 @@ export default function SchoolHero() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

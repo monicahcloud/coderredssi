@@ -17,6 +17,7 @@ const mobileLinks = [
   { name: "About", href: "/about" },
   { name: "For Schools", href: "/schools" },
   { name: "Partnerships", href: "/partnerships" },
+  { name: "Meet Board", href: "/about/board" },
   { name: "Donate", href: "/donate" },
 ];
 

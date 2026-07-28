@@ -31,7 +31,7 @@ export default function DonateHero() {
       </div>
       <div className="relative z-10 flex min-h-[calc(100vh-20px)] items-center px-5 py-1 sm:px-8 lg:px-14 xl:px-20 ">
         <div className="max-w-full -mt-50">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-black/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-red-100 backdrop-blur">
+          <div className="mb-6 mt-20 inline-flex items-center gap-2 rounded-full border border-red-500/40 bg-black/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-red-100 backdrop-blur">
             <HeartHandshake className="h-4 w-4" />
             Support Safer Schools
           </div>

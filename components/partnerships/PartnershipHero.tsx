@@ -75,7 +75,7 @@ export default function PartnershipHero() {
             </a>
           </div>
           <div className=" border-white/30 bg-black  mt-8">
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {/* <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 "School Leaders",
                 "Teachers & Staff",
@@ -90,7 +90,7 @@ export default function PartnershipHero() {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

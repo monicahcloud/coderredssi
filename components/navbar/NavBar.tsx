@@ -27,7 +27,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/partnerships", label: "Partnerships" },
-  // { href: "/schools", label: "Schools/Districts" },
+  { href: "/schools", label: "Schools/Districts" },
   { href: "/about/board", label: "Meet The Board" },
 ];
 
