@@ -80,6 +80,29 @@ const boardMembers = [
     quote:
       "Safety must become an organizational capability, not simply a written procedure.",
   },
+  {
+    number: "04",
+    name: "Paul Toups",
+    role: "Board Member",
+    image: "/images/paultoup.png",
+    eyebrow: "School Safety, Law Enforcement & Preparedness",
+    summary:
+      "Paul brings more than three decades of law enforcement, tactical training, executive leadership, and school safety experience to Code Red.",
+    bio: [
+      "Paul began his career with the Lafayette Sheriff’s Department in 1992 before joining the Louisiana State Police in 1994. He served on the State Police SWAT team and worked across patrol, investigations, narcotics, protective services, and detective assignments involving officer-involved shootings.",
+      "As a Louisiana State Police Training Academy drill instructor and certified trainer, he trained personnel in physical fitness, defensive tactics, driving, officer survival, and firearms. After retiring from State Police in 2018, he continued his public service through dignitary protection with the Louisiana Attorney General’s Office and later led 27 agents as director of the Louisiana Office of Alcohol and Tobacco Control enforcement division.",
+      "In 2020, Paul returned to Louisiana State Police to lead a statewide school safety grant initiative. He now oversees the School Physical Assessment process for more than 1,650 Louisiana schools, bringing Code Red practitioner-based expertise in large-scale assessments, readiness evaluation, safety planning, and violence prevention.",
+    ],
+    icon: "shield-check",
+    highlights: [
+      "Three decades of law enforcement leadership",
+      "Louisiana State Police SWAT and tactical training",
+      "Physical assessments for 1,650+ schools",
+      "School readiness, preparedness, and risk reduction",
+    ],
+    quote:
+      "Prepared schools begin with informed assessments, practical planning, and the readiness to act.",
+  },
 ] as const;
 
 const boardResponsibilities = [
@@ -123,7 +146,7 @@ export default function BoardPage() {
 
           <div className="mx-auto  max-w-6xl border-y border-white/20 py-3 ">
             <p className=" text-xl font-black text-black uppercase text-center sm:text-3xl">
-              Proven Leaders.
+              Proven Leaders. <br />
               <span className=" text-white"> One Shared Responsibility.</span>
             </p>
           </div>

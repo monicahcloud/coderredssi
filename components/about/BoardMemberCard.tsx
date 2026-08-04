@@ -78,9 +78,9 @@ export default function BoardMemberCard({
                 <Icon className="h-6 w-6" />
               </div>
 
-              <span className="absolute right-5 top-5 text-6xl font-black leading-none text-white/25">
+              {/* <span className="absolute right-5 top-5 text-6xl font-black leading-none text-white/25">
                 {member.number}
-              </span>
+              </span> */}
 
               <div className="absolute inset-x-0 bottom-0 p-6">
                 <p className="text-xs font-black uppercase tracking-[0.24em] text-red-500">
@@ -121,9 +121,9 @@ export default function BoardMemberCard({
                   </div>
                 </div>
 
-                <span className="text-5xl font-black leading-none text-slate-100">
+                {/* <span className="text-5xl font-black leading-none text-slate-100">
                   {member.number}
-                </span>
+                </span> */}
               </div>
 
               <p className="mt-5 text-lg font-black leading-7">
@@ -195,9 +195,9 @@ export default function BoardMemberCard({
                 </h3>
               </div>
 
-              <span className="text-7xl font-black leading-none text-white/20">
+              {/* <span className="text-7xl font-black leading-none text-white/20">
                 {member.number}
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

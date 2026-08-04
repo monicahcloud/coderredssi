@@ -1,61 +1,36 @@
 "use client";
 
+import { Heart } from "lucide-react";
+import Link from "next/link";
+
+import { PartnerCTA } from "../cta/PartnerCTA";
+import { SchoolCTA } from "../cta/SchoolCTA";
+import Links from "./Links";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
-import { SchoolCTA } from "../cta/SchoolCTA";
-import { PartnerCTA } from "../cta/PartnerCTA";
-import Link from "next/link";
-import { Heart } from "lucide-react";
 
 function DonateCTA() {
   return (
     <Link
       href="/donate"
-      className="
-        inline-flex h-11 items-center justify-center gap-2 rounded-full
-        bg-red-600 px-5 text-xs font-black uppercase tracking-widest text-white
-        shadow-lg transition-all duration-300
-        hover:scale-105 hover:bg-red-700
-      ">
-      <Heart className="h-4 w-4 fill-white" />
+      className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-red-600 px-5 text-xs font-black uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-red-700">
+      <Heart className="size-4 fill-white" />
       Donate
     </Link>
   );
 }
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/partnerships", label: "Partnerships" },
-  { href: "/schools", label: "Schools/Districts" },
-  { href: "/about/board", label: "Meet The Board" },
-];
-
-function NavBar() {
+export default function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/95 backdrop-blur">
-      <div className="mx-auto flex max-w-8xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Logo */}
+      <div className="mx-auto flex max-w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
 
-        {/* Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="
-                text-lg font-semibold uppercase tracking-wider text-white/90
-                transition hover:text-red-700 hover:underline hover:underline-offset-4
-              ">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {/* Desktop navigation */}
+        <Links />
 
-        {/* Right Side */}
-        <div className="hidden sm:flex gap-3">
-          {/* Only on very wide screens */}
+        {/* Desktop CTA buttons */}
+        <div className="hidden items-center gap-3 sm:flex">
           <div className="hidden 2xl:block">
             <SchoolCTA location="navbar" />
           </div>
@@ -67,7 +42,7 @@ function NavBar() {
           <DonateCTA />
         </div>
 
-        {/* Mobile */}
+        {/* Mobile menu */}
         <div className="flex lg:hidden">
           <MobileMenu />
         </div>
@@ -75,5 +50,3 @@ function NavBar() {
     </header>
   );
 }
-
-export default NavBar;

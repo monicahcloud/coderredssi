@@ -35,6 +35,7 @@ export default function Home() {
 
               <ImpactFramework />
               <TransitionSlide
+                className=" "
                 eyebrow="Partnership"
                 title="How Partnerships Work"
                 highlight="Contribute"
