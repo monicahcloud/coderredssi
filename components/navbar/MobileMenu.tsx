@@ -12,30 +12,17 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { PartnerCTA } from "../cta/PartnerCTA";
-import { SchoolCTA } from "../cta/SchoolCTA";
+import { Mail } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const mobileLinks = [
-  {
-    name: "About",
-    href: "/about",
-  },
-  {
-    name: "For Schools",
-    href: "/schools",
-  },
-  {
-    name: "Partnerships",
-    href: "/partnerships",
-  },
-  {
-    name: "Meet The Board",
-    href: "/about/board",
-  },
-  {
-    name: "Donate",
-    href: "/donate",
-  },
+  { name: "About", href: "/about" },
+  { name: "For Schools", href: "/schools" },
+  { name: "Partnerships", href: "/partnerships" },
+  { name: "Meet Board", href: "/about/board" },
+  { name: "Insights", href: "/insights" },
+  { name: "Contact Us", href: "/contact" },
+  { name: "Donate", href: "/donate" },
 ];
 
 const serviceLinks = [
@@ -85,19 +72,19 @@ export default function MobileMenu() {
 
         {/* CTA buttons */}
         <div className="z-20 mb-8 mt-10 flex flex-col gap-3">
-          <div onClick={handleClose}>
-            <SchoolCTA
-              location="mobile_menu"
-              className="!h-11 !w-full !px-4 !text-[10px] [&_svg]:!size-4"
-            />
-          </div>
+          <Link
+            href="/contact"
+            onClick={() => {
+              trackEvent("contact_click", {
+                location: "mobile_menu",
+              });
 
-          <div onClick={handleClose}>
-            <PartnerCTA
-              location="mobile_menu"
-              className="!h-11 !w-full !px-4 !text-[10px] [&_svg]:!size-4"
-            />
-          </div>
+              handleClose();
+            }}
+            className="mt-10 inline-flex h-12 w-full items-center justify-center gap-2 bg-red-700 px-5 text-xs font-black uppercase tracking-[0.18em] text-white transition hover:bg-red-800">
+            <Mail className="h-4 w-4" />
+            Contact Us
+          </Link>
         </div>
 
         <nav className="z-20 flex flex-grow flex-col space-y-6 overflow-y-auto pr-2">
@@ -108,7 +95,7 @@ export default function MobileMenu() {
               onClick={() => setServicesOpen((current) => !current)}
               aria-expanded={servicesOpen}
               className="flex w-full items-center justify-between text-left text-3xl font-black uppercase transition-colors hover:text-red-500">
-              Services
+              Framework
               <ChevronDown
                 className={`size-7 transition-transform ${
                   servicesOpen ? "rotate-180 text-red-500" : ""
@@ -118,14 +105,6 @@ export default function MobileMenu() {
 
             {servicesOpen ? (
               <div className="mt-5 grid gap-3">
-                <Link
-                  href="/schools"
-                  onClick={handleClose}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold uppercase tracking-widest text-zinc-200 transition hover:bg-red-600 hover:text-white">
-                  Services Overview
-                  <ArrowRight className="size-4" />
-                </Link>
-
                 {serviceLinks.map((service) => (
                   <Link
                     key={service.name}

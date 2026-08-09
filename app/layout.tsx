@@ -1,14 +1,14 @@
-// app/layout.tsx
 import type { Metadata } from "next";
-import { Montserrat, Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Montserrat, Roboto_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
-import "./globals.css";
+import { Suspense } from "react";
 
 import NavBar from "@/components/navbar/NavBar";
 import Footer from "@/components/footer/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { Suspense } from "react";
+
+import "./globals.css";
 
 const fontHeading = Montserrat({
   subsets: ["latin"],

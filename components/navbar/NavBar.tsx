@@ -1,48 +1,75 @@
 "use client";
 
-import { Heart } from "lucide-react";
 import Link from "next/link";
+import { Heart, Mail } from "lucide-react";
 
-import { PartnerCTA } from "../cta/PartnerCTA";
-import { SchoolCTA } from "../cta/SchoolCTA";
-import Links from "./Links";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
+import { trackEvent } from "@/lib/analytics";
+
+function ContactCTA() {
+  return (
+    <Link
+      href="/contact"
+      onClick={() =>
+        trackEvent("contact_click", {
+          location: "navbar",
+        })
+      }
+      className="inline-flex h-11 items-center justify-center gap-2 bg-red-700 px-5 text-xs font-black uppercase tracking-widest text-white transition hover:bg-red-800">
+      <Mail className="h-4 w-4" />
+      Contact Us
+    </Link>
+  );
+}
 
 function DonateCTA() {
   return (
     <Link
       href="/donate"
-      className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-red-600 px-5 text-xs font-black uppercase tracking-widest text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-red-700">
-      <Heart className="size-4 fill-white" />
+      onClick={() =>
+        trackEvent("donate_click", {
+          location: "navbar",
+        })
+      }
+      className="inline-flex h-11 items-center justify-center gap-2 bg-white px-5 text-xs font-black uppercase tracking-widest text-slate-950 transition hover:bg-slate-200">
+      <Heart className="h-4 w-4 fill-red-700 text-red-700" />
       Donate
     </Link>
   );
 }
 
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/partnerships", label: "Partnerships" },
+  { href: "/schools", label: "Schools/Districts" },
+  { href: "/about/board", label: "Meet The Board" },
+  { href: "/insights", label: "Insights" },
+];
+
 export default function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/95 backdrop-blur">
-      <div className="mx-auto flex max-w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Logo />
 
-        {/* Desktop navigation */}
-        <Links />
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-semibold uppercase tracking-wider text-white/90 transition hover:text-red-600 xl:text-base">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Desktop CTA buttons */}
         <div className="hidden items-center gap-3 sm:flex">
-          <div className="hidden 2xl:block">
-            <SchoolCTA location="navbar" />
-          </div>
-
-          <div className="hidden 2xl:block">
-            <PartnerCTA location="navbar" />
-          </div>
-
+          <ContactCTA />
           <DonateCTA />
         </div>
 
-        {/* Mobile menu */}
         <div className="flex lg:hidden">
           <MobileMenu />
         </div>

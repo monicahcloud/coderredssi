@@ -103,6 +103,30 @@ const boardMembers = [
     quote:
       "Prepared schools begin with informed assessments, practical planning, and the readiness to act.",
   },
+  {
+    number: "05",
+    name: "Chris Hughes",
+    role: "Board Member",
+    image: "/images/chrishughes.png",
+    eyebrow: "Campus Safety, Emergency Management & Education",
+    summary:
+      "Chris brings nearly two decades of law enforcement executive leadership, campus public safety expertise, and public safety education experience to Code Red.",
+    bio: [
+      "Chief Hughes is a law enforcement executive and campus public safety leader from Nashville, Georgia. He holds a doctorate from Middle Georgia State University and is a graduate of the Northwestern University School of Police Staff and Command and the Georgia Law Enforcement Command College.",
+      "Throughout his career, he has led police operations, emergency management, and critical incident response in both municipal and campus environments.",
+      "He also served for five years as Dean of the School of Public Safety and director of a regional Law Enforcement Academy, where he successfully increased enrollment and strengthened partnerships with law enforcement agencies.",
+      "At Code Red, Chief Hughes helps advance innovative, technology-driven public safety strategies while fostering professionalism, accountability, collaboration, and continuous improvement to protect students, employees, and the communities they serve.",
+    ],
+    icon: "graduation-cap",
+    highlights: [
+      "Nearly two decades of law enforcement leadership",
+      "Campus safety and emergency management",
+      "Public safety education and academy leadership",
+      "Technology-driven safety strategies",
+    ],
+    quote:
+      "Safer campuses are built through innovation, collaboration, accountability, and continuous improvement.",
+  },
 ] as const;
 
 const boardResponsibilities = [

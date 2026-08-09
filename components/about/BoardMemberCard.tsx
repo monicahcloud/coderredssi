@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import {
   CheckCircle2,
+  GraduationCap,
   RotateCcw,
   ShieldCheck,
   Target,
@@ -13,6 +14,7 @@ import {
 
 const iconMap = {
   "shield-check": ShieldCheck,
+  "graduation-cap": GraduationCap,
   target: Target,
   users: Users,
 } as const;

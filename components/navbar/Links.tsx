@@ -8,15 +8,20 @@ export const links = [
     name: "About",
     href: "/about",
   },
+
   {
-    name: "Services",
+    name: "For Schools",
+    href: "/schools",
+  },
+  {
+    name: "Partnerships",
+    href: "/partnerships",
+  },
+  {
+    name: "Framework",
     href: "/schools",
     hasSubMenu: true,
     subMenu: [
-      {
-        name: "Services Overview",
-        href: "/schools",
-      },
       {
         name: "Physical Assessments",
         href: "/schools/physical-assessments",
@@ -34,14 +39,6 @@ export const links = [
         href: "/schools/reassessment",
       },
     ],
-  },
-  {
-    name: "For Schools",
-    href: "/schools",
-  },
-  {
-    name: "Partnerships",
-    href: "/partnerships",
   },
   {
     name: "Meet The Board",

@@ -105,7 +105,7 @@ export default function ContactSection() {
 
   return (
     <section
-      id="contact"
+      id="contactsection"
       className="relative overflow-hidden bg-background py-24 md:py-32">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-0 top-0 h-128 w-lg rounded-full bg-primary/10 blur-3xl" />
