@@ -386,12 +386,17 @@ export default function DonationPanel() {
                 <p className="text-sm font-black uppercase tracking-[0.25em] text-red-600">
                   Your Gift. Real Change.
                 </p>
-
                 <h2 className="mt-4 flex flex-wrap gap-x-2 text-4xl font-black leading-tight text-slate-950 lg:text-5xl">
                   <span>See the Impact of</span>
                   <span className="text-red-700">Your Support</span>
                 </h2>
-
+                <p className="mt-6 text-lg leading-8 text-slate-600">
+                  Your generous contribution helps Code Red Safer Schools
+                  Initiative, Inc. provide professional school security
+                  assessments, emergency preparedness training, and
+                  risk-mitigation guidance at no cost to K–12 schools across the
+                  country.
+                </p>{" "}
                 <p className="mt-2 text-base leading-7 text-zinc-600 lg:text-lg">
                   The impact dashboard updates automatically as you select a
                   donation amount.
@@ -457,14 +462,10 @@ export default function DonationPanel() {
                 </div>
               </div>
 
-              <div className="mt-5 flex items-center gap-4  bg-slate-950 p-5 text-white">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-700">
-                  <ShieldCheck className="h-6 w-6" />
-                </div>
-
-                <p className="text-sm leading-6 text-white/80">
-                  Every contribution helps Code Red provide safer learning
-                  environments for students, educators, and school communities.
+              <div className="mx-auto max-w-5xl">
+                <p className="mt-8 text-xl font-bold leading-8 text-slate-950">
+                  Thank you for helping us create safer learning environments
+                  for students and educators.
                 </p>
               </div>
             </div>
@@ -679,6 +680,38 @@ export default function DonationPanel() {
               <p className="mt-6 text-center text-sm text-zinc-500">
                 Secure payment processing powered by Stripe.
               </p>
+              {/* Important tax disclosure */}
+              <div className="mt-10 border-l-4 border-red-700 bg-slate-100 px-6 py-7 sm:px-8">
+                <p className="text-sm font-black uppercase tracking-[0.18em] text-red-700">
+                  Important Tax Information
+                </p>
+
+                <p className="mt-4 leading-7 text-slate-700">
+                  Code Red Safer Schools Initiative, Inc. is a Florida nonprofit
+                  corporation. Its application for recognition of exemption
+                  under Section 501(c)(3) of the Internal Revenue Code is
+                  currently pending with the Internal Revenue Service.
+                </p>
+
+                <p className="mt-4 leading-7 text-slate-700">
+                  Donors do not have advance assurance that this contribution is
+                  tax-deductible while the application is pending. If the IRS
+                  approves our application, your donation may be tax-deductible
+                  retroactively to our date of formation, to the extent allowed
+                  by law.
+                </p>
+
+                <p className="mt-4 leading-7 text-slate-700">
+                  We recommend that you retain this acknowledgment and your
+                  payment receipt for your records and consult your tax adviser
+                  regarding your individual tax situation.
+                </p>
+
+                <p className="mt-5 font-bold text-slate-950">
+                  No goods or services are provided in exchange for your
+                  contribution.
+                </p>
+              </div>
             </div>
           </div>
         </div>

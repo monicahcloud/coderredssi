@@ -34,7 +34,7 @@ export default function Home() {
               />
 
               <ImpactFramework />
-              <TransitionSlide
+              {/* <TransitionSlide
                 className=" "
                 eyebrow="Partnership"
                 title="How Partnerships Work"
@@ -46,15 +46,15 @@ export default function Home() {
                   "Collaborate on local and statewide initiatives",
                 ]}
                 tone="red"
-              />
-              <Partnership />
+              /> */}
+              {/* <Partnership /> */}
               <TransitionSlide
                 eyebrow="The Crisis"
                 title="Schools Under Threat"
                 highlight="Threat"
                 description="School security threats have reached unprecedented levels, demanding
 immediate, coordinated action."
-                tone="neutral"
+                tone="red"
               />
               <Stats />
 
