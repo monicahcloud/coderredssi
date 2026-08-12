@@ -106,7 +106,7 @@ export default function ContactSection() {
   return (
     <section
       id="contactsection"
-      className="relative overflow-hidden bg-background py-24 md:py-32">
+      className="relative overflow-hidden bg-white py-24 text-slate-950 md:py-32">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-0 top-0 h-128 w-lg rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-120 w-120 rounded-full bg-primary/5 blur-3xl" />
@@ -133,7 +133,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.5 }}
-            className="relative overflow-hidden rounded-[2rem] border border-border bg-card p-8 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.45)] md:p-10 xl:col-span-5">
+            className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-8 text-slate-950 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.45)] md:p-10 xl:col-span-5">
             <div className="absolute inset-x-0 top-0 h-1 bg-primary " />
             <div className=" flex items-center justify-center mb-5">
               {" "}
@@ -143,17 +143,17 @@ export default function ContactSection() {
               />
             </div>
 
-            <h3 className="text-4xl font-black uppercase tracking-tighter text-foreground md:text-5xl">
+            <h3 className="text-4xl font-black uppercase tracking-tighter text-slate-950 md:text-5xl">
               {panelContent.title}
             </h3>
 
-            <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">
+            <p className="mt-5 max-w-xl text-base leading-7 text-slate-600">
               {panelContent.quote}
             </p>
 
-            <div className="mt-8 rounded-[1.75rem] border border-border bg-muted/30 p-6">
+            <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-red-50 text-red-700">
                   {contactType === "school" ? (
                     <ShieldCheck className="h-5 w-5" />
                   ) : (
@@ -162,64 +162,66 @@ export default function ContactSection() {
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-black tracking-tight text-foreground">
+                  <h4 className="text-lg font-black tracking-tight text-slate-950">
                     {panelContent.cardTitle}
                   </h4>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
                     {panelContent.cardText}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 pt-5">
-              {/* Email */}
-              <div className="rounded-[1.5rem] border border-border bg-background p-5">
-                <div className="mt-4 flex items-center gap-2 text-muted-foreground">
-                  <Mail className="h-4 w-4 text-primary" />
+            <div className="grid gap-4 pt-5 sm:grid-cols-2">
+              <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
+                <div className="mt-4 flex items-center gap-2 text-slate-500">
+                  <Mail className="h-4 w-4 text-red-700" />
                   <p className="text-[11px] font-black uppercase tracking-[0.2em]">
                     Email
                   </p>
                 </div>
+
                 <a
                   href="mailto:info@coderedssi.org"
-                  className="text-sm font-semibold text-foreground transition-colors hover:text-primary">
+                  className="text-sm font-semibold text-slate-950 transition-colors hover:text-red-700">
                   info@coderedssi.org
                 </a>
               </div>
 
-              {/* Phone */}
-              <div className="rounded-[1.5rem] border border-border bg-background p-5">
-                <div className="mt-4 flex items-center gap-2 text-muted-foreground">
-                  <Phone className="h-4 w-4 text-primary" />
+              <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5">
+                <div className="mt-4 flex items-center gap-2 text-slate-500">
+                  <Phone className="h-4 w-4 text-red-700" />
                   <p className="text-[11px] font-black uppercase tracking-[0.2em]">
                     Direct Line
                   </p>
                 </div>
+
                 <a
                   href="tel:+18442435727"
-                  className="text-sm font-semibold text-foreground transition-colors hover:text-primary">
+                  className="text-sm font-semibold text-slate-950 transition-colors hover:text-red-700">
                   (844) 243-5727
                 </a>
               </div>
-              {/* Address */}
-              {/* Address */}
-              <div className="rounded-[1.5rem] border border-border bg-background p-5 sm:col-span-2 max-w-md mx-auto">
-                <div className="mt-4 flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="h-4 w-4 text-primary" />
+
+              <div className="mx-auto max-w-md rounded-[1.5rem] border border-slate-200 bg-white p-5 sm:col-span-2">
+                <div className="mt-4 flex items-center gap-2 text-slate-500">
+                  <MapPin className="h-4 w-4 text-red-700" />
                   <p className="text-[11px] font-black uppercase tracking-[0.2em]">
                     Address
                   </p>
                 </div>
+
                 <a
                   href="https://maps.google.com/?q=15257+Amberly+Dr+Ste+537+Tampa+FL"
                   target="_blank"
-                  className="text-sm font-semibold text-foreground hover:text-primary">
-                  <p className="text-sm font-semibold text-foreground leading-relaxed">
+                  rel="noreferrer"
+                  className="text-sm font-semibold text-slate-950 hover:text-red-700">
+                  <span className="block leading-relaxed">
                     15257 Amberly Dr Ste 537
                     <br />
                     Tampa, FL 33647
-                  </p>
+                  </span>
                 </a>
               </div>
             </div>
@@ -231,14 +233,12 @@ export default function ContactSection() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                className="relative rounded-[2rem] bg-foreground p-8 text-background shadow-2xl md:p-12">
+                className="relative rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl md:p-12">
                 <div className="mb-10">
                   <h3 className="mb-2 text-3xl font-black italic uppercase tracking-tighter text-primary">
                     {panelContent.heading}
                   </h3>
-                  <p className="text-background/60">
-                    {panelContent.subheading}
-                  </p>
+                  <p className="text-white/60">{panelContent.subheading}</p>
                 </div>
 
                 <AnimatePresence mode="wait">

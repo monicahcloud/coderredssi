@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="overflow-hidden bg-white text-slate-950">
+    <main className="overflow-hidden">
       {/* <section className="relative isolate overflow-hidden bg-slate-950 px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(185,28,28,0.34),transparent_30%)]" />
         <div className="absolute -right-16 top-6 select-none text-[12rem] font-black leading-none text-white/[0.025] sm:text-[18rem]">
