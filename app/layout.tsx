@@ -42,13 +42,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontHeading.variable} ${fontBody.variable} ${fontMono.variable}`}>
-      <body className="bg-black antialiased">
+      className={`${fontHeading.variable} ${fontBody.variable} ${fontMono.variable} m-0 w-full bg-black p-0`}>
+      <body className="m-0 min-h-screen w-full overflow-x-clip bg-black p-0 antialiased">
         <Suspense fallback={null}>
           <NavBar />
         </Suspense>
 
-        {children}
+        <main className="m-0 w-full max-w-none p-0">{children}</main>
 
         <Footer />
         <Toaster />
