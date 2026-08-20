@@ -49,13 +49,13 @@ const pillars = [
   {
     badge: "/images/equipmentpillar.png",
     image: "/images/schoolcamera.png",
-    title: "Equipment",
+    title: "Technology & Equipment",
     impact:
       "Investing in modern safety equipment is a visible, measurable way to upgrade protection without redesigning entire buildings. It supports grant applications and funding requests by tying dollars to specific, high‑impact improvements, and it reassures parents, staff, and community partners that concrete steps are being taken to safeguard students.",
     purpose:
       "When a threat appears, the physical environment must immediately work in your favor. Purpose‑built safety equipment—such as reinforced door‑locking devices and barriers—creates instant layers of protection between students and potential harm. The right tools can turn ordinary classrooms into secure spaces in seconds.",
     description:
-      "Our Equipment Program translates assessment findings and training plans into real-world capability. We oversee the coordinated deployment of physical security technologies to ensure systems are properly selected, integrated, and functional. The focus is not just on installing equipment, but on ensuring it operates as a unified, reliable security ecosystem.",
+      "Our Technology & Equipment Program translates assessment findings and training plans into real-world capability. We coordinate the deployment of physical security equipment and integrated software systems so schools can identify risks, manage incidents, improve accountability, and respond effectively. The focus is not just on providing equipment—but providing FREE solutions through donations and partnerships that deliver a connected, reliable safety ecosystem that schools can sustain.",
     features: [
       "Safety hardware support",
       "Resource distribution",

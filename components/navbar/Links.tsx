@@ -8,7 +8,6 @@ export const links = [
     name: "About",
     href: "/about",
   },
-
   {
     name: "For Schools",
     href: "/schools",
@@ -46,21 +45,22 @@ export const links = [
   },
 ];
 
+const navigationLinkStyles =
+  "flex items-center gap-1 text-sm font-semibold uppercase tracking-wider text-white/90 transition-colors hover:text-red-600 xl:text-base";
+
 export default function Links() {
   return (
     <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
       {links.map((link) =>
-        link.hasSubMenu ? (
+        link.hasSubMenu && link.subMenu ? (
           <div key={link.name} className="group relative">
-            <Link
-              href={link.href}
-              className="flex items-center gap-1 text-xs font-bold uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:text-white">
+            <Link href={link.href} className={navigationLinkStyles}>
               {link.name}
 
               <ChevronDown className="size-4 transition-transform duration-300 group-hover:rotate-180" />
             </Link>
 
-            {/* Invisible bridge prevents menu from closing */}
+            {/* Keeps the dropdown open while moving the cursor into it */}
             <div className="absolute left-0 top-full h-5 w-full" />
 
             <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 translate-y-2 rounded-2xl border border-white/10 bg-black/95 p-3 opacity-0 shadow-2xl backdrop-blur transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
@@ -68,7 +68,7 @@ export default function Links() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block rounded-xl px-4 py-3 text-sm font-medium text-zinc-300 transition hover:bg-red-600 hover:text-white focus:bg-red-600 focus:text-white focus:outline-none">
+                  className="block rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-wider text-white/90 transition-colors hover:bg-red-700 hover:text-white">
                   {item.name}
                 </Link>
               ))}
@@ -78,10 +78,8 @@ export default function Links() {
           <Link
             key={link.name}
             href={link.href}
-            className="group relative text-xs font-bold uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:text-white">
+            className={navigationLinkStyles}>
             {link.name}
-
-            <span className="absolute -bottom-2 left-0 h-[2px] w-0 bg-red-600 transition-all duration-300 group-hover:w-full" />
           </Link>
         ),
       )}

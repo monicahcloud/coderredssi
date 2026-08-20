@@ -20,7 +20,7 @@ const mobileLinks = [
   { name: "For Schools", href: "/schools" },
   { name: "Partnerships", href: "/partnerships" },
   { name: "Meet Board", href: "/about/board" },
-  { name: "Insights", href: "/insights" },
+  // { name: "Insights", href: "/insights" },
   { name: "Contact Us", href: "/contact" },
   { name: "Donate", href: "/donate" },
 ];

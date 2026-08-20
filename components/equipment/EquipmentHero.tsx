@@ -5,10 +5,10 @@ import PillarHero from "@/components/pillars/PillarHero";
 export default function EquipmentHero() {
   return (
     <PillarHero
-      ribbon="Equipment"
+      ribbon="Technology & Equipment"
       badge="School Safety Equipment"
-      heading="Safety"
-      highlightedHeading="Equipment"
+      heading="Technology"
+      highlightedHeading=" & Equipment"
       statement="Strengthen your systems. Support a faster response."
       description="We help schools evaluate and prioritize the physical security equipment, communication tools, access controls, and safety systems needed to strengthen everyday readiness."
       image="/images/securitycameras.png"

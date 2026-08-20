@@ -6,6 +6,7 @@ import { Heart, Mail } from "lucide-react";
 import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import { trackEvent } from "@/lib/analytics";
+import Links from "./Links";
 
 function ContactCTA() {
   return (
@@ -39,14 +40,14 @@ function DonateCTA() {
   );
 }
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/partnerships", label: "Partnerships" },
-  { href: "/schools", label: "Schools/Districts" },
-  { href: "/about/board", label: "Meet The Board" },
-  { href: "/insights", label: "Insights" },
-];
+// const links = [
+//   { href: "/", label: "Home" },
+//   { href: "/about", label: "About" },
+//   { href: "/partnerships", label: "Partnerships" },
+//   { href: "/schools", label: "Schools/Districts" },
+//   { href: "/about/board", label: "Meet The Board" },
+//   // { href: "/insights", label: "Insights" },
+// ];
 
 export default function NavBar() {
   return (
@@ -55,14 +56,7 @@ export default function NavBar() {
         <Logo />
 
         <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-semibold uppercase tracking-wider text-white/90 transition hover:text-red-600 xl:text-base">
-              {link.label}
-            </Link>
-          ))}
+          <Links />
         </nav>
 
         <div className="hidden items-center gap-3 sm:flex">

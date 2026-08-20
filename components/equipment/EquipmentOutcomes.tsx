@@ -19,7 +19,7 @@ const outcomes: EquipmentOutcome[] = [
     number: "02",
     title: "Improve Visibility",
     description:
-      "Use monitoring tools to identify risks, observe activity, and support informed decisions.",
+      "Use integrated software solutions to identify risks, observe activity, and support informed decisions.",
     icon: Eye,
   },
   {
